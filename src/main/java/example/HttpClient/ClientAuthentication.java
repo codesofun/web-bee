@@ -24,14 +24,16 @@ public class ClientAuthentication {
         CredentialsProvider credsProvider = new BasicCredentialsProvider();
         credsProvider.setCredentials(
                 //scope 范围
-                new AuthScope("httpbin.org", 80),
-                new UsernamePasswordCredentials("user", "passwd"));
+//                new AuthScope("httpbin.org", 80),
+                new AuthScope("https://www.ZhiHu.com", 80),
+                new UsernamePasswordCredentials("pkwenda@163.com", "886pkxiaojiba"));
         //custom:定制的
         CloseableHttpClient httpclient = HttpClients.custom()
                 .setDefaultCredentialsProvider(credsProvider)
                 .build();
         try {
-            HttpGet httpget = new HttpGet("http://httpbin.org/basic-auth/user/passwd");
+//            HttpGet httpget = new HttpGet("http://httpbin.org/basic-auth/user/passwd");
+            HttpGet httpget = new HttpGet("https://www.ZhiHu.com/#signin");
 
             System.out.println("Executing request " + httpget.getRequestLine());
             CloseableHttpResponse response = httpclient.execute(httpget);
