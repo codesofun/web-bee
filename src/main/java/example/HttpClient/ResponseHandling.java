@@ -21,6 +21,7 @@ import org.apache.http.util.EntityUtils;
  */
 public class ResponseHandling {
 
+
     public final static void main(String[] args) throws Exception {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
@@ -30,7 +31,6 @@ public class ResponseHandling {
 
             // Create a custom response handler
             ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
-
                 @Override
                 public String handleResponse(
                         final HttpResponse response) throws ClientProtocolException, IOException {
