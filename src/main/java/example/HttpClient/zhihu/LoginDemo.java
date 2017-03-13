@@ -52,24 +52,6 @@ public class LoginDemo {
             valuePairs.add(new BasicNameValuePair("password", "886pkxiaojiba"));
             valuePairs.add(new BasicNameValuePair("rememberme", "true"));
 
-            //获取验证码
-//            HttpGet getCaptcha = new HttpGet("http://www.zhihu.com/captcha.gif?r=" + System.currentTimeMillis() + "&type=login");
-//            CloseableHttpResponse imageResponse = httpClient.execute(getCaptcha);
-//            FileOutputStream out = new FileOutputStream("/tmp/ZhiHu.gif");
-//            byte[] bytes = new byte[8192];
-//            int len;
-//            while ((len = imageResponse.getEntity().getContent().read(bytes)) != -1) {
-//                out.write(bytes,0,len);
-//            }
-//            out.close();
-//            Runtime.getRuntime().exec("eog /tmp/ZhiHu.gif");//ubuntu下看图片的命令是eog
-//
-//            //请用户输入验证码
-//            System.out.print("请输入验证码：");
-//            Scanner scanner = new Scanner(System.in);
-//            String captcha = scanner.next();
-//            valuePairs.add(new BasicNameValuePair("captcha", captcha));
-
             //完成登陆请求的构造
             UrlEncodedFormEntity entity = new UrlEncodedFormEntity(valuePairs, Consts.UTF_8);
             HttpPost post = new HttpPost("https://www.ZhiHu.com/login/phone_num");
