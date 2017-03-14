@@ -62,6 +62,7 @@ public class LoginDemo {
             CloseableHttpResponse r = httpClient.execute(g);
             System.out.println(EntityUtils.toString(r.getEntity()));
             r.close();
+            next(httpClient);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -71,5 +72,13 @@ public class LoginDemo {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void next(CloseableHttpClient httpClient) throws IOException {
+
+        HttpGet g = new HttpGet("https://www.zhihu.com");//获取“首页”页面
+        CloseableHttpResponse r = httpClient.execute(g);
+        System.out.println(EntityUtils.toString(r.getEntity()));
+        r.close();
     }
 }
