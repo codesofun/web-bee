@@ -22,11 +22,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * @author 作者 ：chenzenan E-mail:chen.ze.nan@163.com
- * @version 创建时间：2012-8-10 下午04:35:48 Copyright ? 2012-8-10 Shanghai XXX Co.
- *          Ltd. All right reserved.
- */
+ 
 public class LoginDemo {
 
     public static void main(String[] args) throws IOException {
