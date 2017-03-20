@@ -63,7 +63,7 @@ public class LoginDemo {
 
             Document doc = Jsoup.parse(EntityUtils.toString(r.getEntity()));
             Element body = doc.body();
-            Elements divs = body.getElementsByClass("content");
+            Elements divs = body.select("textarea.content");
             for(Element div : divs){
                 System.out.println("------------------------------------------");
                 System.out.println(div);
