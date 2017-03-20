@@ -15,7 +15,7 @@ public class Request {
     private Object[] message;
 
     /**
-     *
+     * 构造函数
      * @param url      带抓取url
      * @param message  上下文参数
      */

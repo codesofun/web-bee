@@ -8,4 +8,7 @@ package bee.linker;
  */
 public class Page {
 
+    private Request request;
+
+    private Result result;
 }
