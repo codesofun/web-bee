@@ -19,6 +19,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -58,8 +60,17 @@ public class LoginDemo {
 
             HttpGet g = new HttpGet("http://www.ZhiHu.com/explore");//获取“我关注的问题”页面
             CloseableHttpResponse r = httpClient.execute(g);
+
             Document doc = Jsoup.parse(EntityUtils.toString(r.getEntity()));
-            System.out.println(doc);
+            Element body = doc.body();
+            Elements divs = body.getElementsByClass("content");
+            for(Element div : divs){
+                System.out.println("------------------------------------------");
+                System.out.println(div);
+                System.out.println("------------------------------------------");
+            }
+
+
             r.close();
             next(httpClient);
         } catch (IOException e) {
