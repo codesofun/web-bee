@@ -17,6 +17,8 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -54,9 +56,10 @@ public class LoginDemo {
             post.setEntity(entity);
             httpClient.execute(post);//登录
 
-            HttpGet g = new HttpGet("http://www.ZhiHu.com/question/following");//获取“我关注的问题”页面
+            HttpGet g = new HttpGet("http://www.ZhiHu.com/explore");//获取“我关注的问题”页面
             CloseableHttpResponse r = httpClient.execute(g);
-            System.out.println(EntityUtils.toString(r.getEntity()));
+            Document doc = Jsoup.parse(EntityUtils.toString(r.getEntity()));
+            System.out.println(doc);
             r.close();
             next(httpClient);
         } catch (IOException e) {
@@ -74,7 +77,7 @@ public class LoginDemo {
 
         HttpGet g = new HttpGet("https://www.zhihu.com");//获取“首页”页面
         CloseableHttpResponse r = httpClient.execute(g);
-        System.out.println(EntityUtils.toString(r.getEntity()));
+//        System.out.println(EntityUtils.toString(r.getEntity()));
         r.close();
     }
 }
