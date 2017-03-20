@@ -7,5 +7,6 @@ import bee.linker.Page;
  * E-mail  sis.nonacosa@gmail.com
  */
 public interface DownLoader {
+    
     Page download(Page page);
 }
