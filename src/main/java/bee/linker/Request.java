@@ -9,4 +9,19 @@ package bee.linker;
  * 封装将要抓取的URL信息
  */
 public class Request {
+
+    private String url;
+
+    private Object[] message;
+
+    /**
+     *
+     * @param url      带抓取url
+     * @param message  上下文参数
+     */
+    public void Request(String url,Object... message){
+        this.url = url;
+        this.message = message;
+    }
+
 }
