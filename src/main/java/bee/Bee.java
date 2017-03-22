@@ -34,5 +34,6 @@ public class Bee implements Runnable{
     @Override
     public void run() {
         System.out.println("this is Bee.class implement Runnable's run function!");
+        pageProcessor.process();
     }
 }

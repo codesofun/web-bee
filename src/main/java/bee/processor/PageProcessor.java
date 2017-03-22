@@ -8,4 +8,7 @@ package bee.processor;
  * @author sis.nonacosa
  */
 public interface PageProcessor {
+
+    void process();
+    
 }
