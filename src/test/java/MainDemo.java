@@ -5,6 +5,7 @@
 import bee.Bee;
 import bee.linker.Page;
 import bee.processor.PageProcessor;
+import bee.processor.Setting;
 
 /**
  * data 2017-03-23   01:19
@@ -14,14 +15,16 @@ import bee.processor.PageProcessor;
  */
 public class MainDemo implements PageProcessor{
 
+    private Setting setting;
     @Override
     public void process(Page page) {
         System.out.println("This is MainDemo's process function ...");
     }
 
     @Override
-    public void setting() {
+    public Setting setting() {
         System.out.println("This is MainDemo's setting function ...");
+        return setting;
     }
 
     public static void main(String[] args) {

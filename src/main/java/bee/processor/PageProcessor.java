@@ -19,5 +19,5 @@ public interface PageProcessor {
     /**
      * 自定义开启前配置项,cookie 起始页 抓取时间 超时时间
      */
-    void setting();
+    Setting setting();
 }

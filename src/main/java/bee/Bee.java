@@ -4,6 +4,7 @@ import bee.download.DownLoader;
 import bee.linker.Page;
 import bee.linker.Request;
 import bee.processor.PageProcessor;
+import bee.processor.Setting;
 
 /**
  * webBee框架核心入口
@@ -20,12 +21,15 @@ public class Bee implements Runnable{
 
     private Request request;
 
+    private Setting setting;
+
     /**
      * 实例化处理规则
      * @param pageProcessor 用来指向指针到具体规则实现类
      */
     public Bee(PageProcessor pageProcessor) {
         this.pageProcessor = pageProcessor;
+        this.setting = pageProcessor.setting();
     }
 
     /**
