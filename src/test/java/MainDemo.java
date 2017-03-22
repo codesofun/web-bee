@@ -3,6 +3,7 @@
  */
 
 import bee.Bee;
+import bee.linker.Page;
 import bee.processor.PageProcessor;
 
 /**
@@ -14,7 +15,7 @@ import bee.processor.PageProcessor;
 public class MainDemo implements PageProcessor{
 
     @Override
-    public void process() {
+    public void process(Page page) {
         System.out.println("This is MainDemo's process function ...");
     }
 
