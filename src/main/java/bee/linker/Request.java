@@ -14,12 +14,13 @@ public class Request {
 
     private Object[] message;
 
+
     /**
      * 构造函数
      * @param url      带抓取url
      * @param message  上下文参数
      */
-    public void Request(String url,Object... message){
+    public  Request(String url,Object... message){
         this.url = url;
         this.message = message;
     }
