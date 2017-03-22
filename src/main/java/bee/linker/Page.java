@@ -26,6 +26,7 @@ public class Page {
     }
 
     public void addWaitRequest(List<String> requests){
+        //TODO: synchronized  单线程?
         for (String s : requests) {
             if (StringUtils.isBlank(s) || s.equals("#") || s.startsWith("javascript:")) {
                 break;
