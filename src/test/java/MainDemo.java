@@ -18,6 +18,11 @@ public class MainDemo implements PageProcessor{
         System.out.println("This is MainDemo's process function ...");
     }
 
+    @Override
+    public void setting() {
+        System.out.println("This is MainDemo's setting function ...");
+    }
+
     public static void main(String[] args) {
         Bee.create(new MainDemo()).run();
     }

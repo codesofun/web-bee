@@ -9,6 +9,13 @@ package bee.processor;
  */
 public interface PageProcessor {
 
+    /**
+     * 自定义:页面处理页面,链接提取,内容提取等规则
+     */
     void process();
-    
+
+    /**
+     * 自定义开启前配置项,cookie 起始页 抓取时间 超时时间
+     */
+    void setting();
 }
