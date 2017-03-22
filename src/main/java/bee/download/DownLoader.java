@@ -1,6 +1,8 @@
 package bee.download;
 
+import bee.Bee;
 import bee.linker.Page;
+import bee.linker.Request;
 
 /**
  * @author sis.nonacosa
@@ -8,5 +10,13 @@ import bee.linker.Page;
  */
 public interface DownLoader {
 
-    Page download(Page page);
+    //TODO should add task interface?
+
+    /**
+     * 下载页面
+     * @param request
+     * @param bee
+     * @return
+     */
+    Page download(Request request, Bee bee);
 }

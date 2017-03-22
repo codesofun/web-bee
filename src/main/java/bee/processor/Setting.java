@@ -7,5 +7,5 @@ package bee.processor;
  * @author sis.nonacosa
  */
 public class Setting {
-    
+
 }

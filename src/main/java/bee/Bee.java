@@ -1,5 +1,8 @@
 package bee;
 
+import bee.download.DownLoader;
+import bee.linker.Page;
+import bee.linker.Request;
 import bee.processor.PageProcessor;
 
 /**
@@ -12,6 +15,10 @@ import bee.processor.PageProcessor;
 public class Bee implements Runnable{
 
     private PageProcessor pageProcessor;
+
+    private DownLoader downLoader;
+
+    private Request request;
 
     /**
      * 实例化处理规则
@@ -33,7 +40,8 @@ public class Bee implements Runnable{
 
     @Override
     public void run() {
+        Page page = downLoader.download(request,this);
         System.out.println("this is Bee.class implement Runnable's run function!");
-        pageProcessor.process();
+        pageProcessor.process(page);
     }
 }
