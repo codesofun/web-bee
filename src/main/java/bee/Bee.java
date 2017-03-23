@@ -46,7 +46,7 @@ public class Bee implements Runnable{
     public void run() {
         requestProcessor();
 
-        System.out.println("this is Bee.class implement Runnable's run function!");
+        System.out.println("this is Bee.class implement Runnable's run function! --request:" + request);
         pageProcessor.process(pageProcessor(request));
     }
 
