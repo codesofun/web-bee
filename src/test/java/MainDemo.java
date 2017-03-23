@@ -16,6 +16,7 @@ import bee.processor.Setting;
 public class MainDemo implements PageProcessor{
 
     private Setting setting;
+    
     @Override
     public void process(Page page) {
         System.out.println("This is MainDemo's process function ...");
@@ -24,6 +25,7 @@ public class MainDemo implements PageProcessor{
     @Override
     public Setting setting() {
         System.out.println("This is MainDemo's setting function ...");
+        setting = Setting.create().setUserName("pkwenda").setPassword("886pkxiaojiba");
         return setting;
     }
 
