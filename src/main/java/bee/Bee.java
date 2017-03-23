@@ -29,7 +29,7 @@ public class Bee implements Runnable{
      */
     public Bee(PageProcessor pageProcessor) {
         this.pageProcessor = pageProcessor;
-        this.setting = pageProcessor.setting();
+        this.setting = pageProcessor.getSetting(); //获取用户配置
     }
 
     /**

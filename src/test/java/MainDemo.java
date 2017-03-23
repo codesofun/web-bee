@@ -23,7 +23,7 @@ public class MainDemo implements PageProcessor{
     }
 
     @Override
-    public Setting setting() {
+    public Setting getSetting() {
         System.out.println("This is MainDemo's setting function ...");
         setting = Setting.create().setUserName("pkwenda").setPassword("886pkxiaojiba");
         return setting;
