@@ -1,5 +1,7 @@
 package bee.processor;
 
+import java.util.List;
+
 /**
  * 爬虫的配置类
  * data 2017-03-23   01:55
@@ -15,6 +17,8 @@ public class Setting {
     private String userName;
 
     private String password;
+
+    private String startUrl;
 
     /**
      * 个性化配置类入口返回配置对象,省去了new Setting()的步骤
@@ -93,6 +97,15 @@ public class Setting {
      */
     public String getPassword() {
         return password;
+    }
+
+    public String getStartUrl() {
+        return startUrl;
+    }
+
+    public Setting setStartUrl(String startUrl) {
+        this.startUrl = startUrl;
+        return this;
     }
 
 

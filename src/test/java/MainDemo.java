@@ -25,7 +25,7 @@ public class MainDemo implements PageProcessor{
     @Override
     public Setting getSetting() {
         System.out.println("This is MainDemo's setting function ...");
-        setting = Setting.create().setUserName("pkwenda").setPassword("886pkxiaojiba");
+        setting = Setting.create().setStartUrl("https://www.ZhiHu.com/login/phone_num").setUserName("pkwenda").setPassword("886pkxiaojiba");
         return setting;
     }
 

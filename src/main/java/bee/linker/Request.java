@@ -6,7 +6,7 @@ package bee.linker;
  * @author sis.nonacosa
  *
  *
- * 封装将要抓取的URL信息
+ * 封装将要抓取的请求信息
  */
 public class Request {
 

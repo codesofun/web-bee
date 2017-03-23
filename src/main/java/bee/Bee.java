@@ -44,8 +44,21 @@ public class Bee implements Runnable{
 
     @Override
     public void run() {
-        Page page = downLoader.download(request,this);
+        requestProcessor();
+
         System.out.println("this is Bee.class implement Runnable's run function!");
-        pageProcessor.process(page);
+        pageProcessor.process(pageProcessor(request));
+    }
+
+    /**
+     * 获取带抓取请求信息
+     * @return
+     */
+    public void requestProcessor(){
+        this.request = new Request(setting.getStartUrl());
+    }
+
+    public Page pageProcessor(Request request){
+        return downLoader.download(request, this);
     }
 }
