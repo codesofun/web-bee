@@ -3,6 +3,7 @@ package bee.download;
 import bee.Bee;
 import bee.linker.Page;
 import bee.linker.Request;
+import bee.processor.Task;
 
 /**
  * @author sis.nonacosa
@@ -15,8 +16,8 @@ public interface DownLoader {
     /**
      * 下载页面
      * @param request
-     * @param bee
+     * @param task
      * @return
      */
-    Page download(Request request, Bee bee);
+    Page download(Request request, Task task);
 }

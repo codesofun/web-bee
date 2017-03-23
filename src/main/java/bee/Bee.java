@@ -1,10 +1,12 @@
 package bee;
 
 import bee.download.DownLoader;
+import bee.download.HttpClientDownloader;
 import bee.linker.Page;
 import bee.linker.Request;
 import bee.processor.PageProcessor;
 import bee.processor.Setting;
+import bee.processor.Task;
 
 /**
  * webBee框架核心入口
@@ -13,11 +15,11 @@ import bee.processor.Setting;
  * E-mail   sis.nonacosa@gmail.com
  * @author sis.nonacosa
  */
-public class Bee implements Runnable{
+public class Bee implements Runnable,Task {
 
     private PageProcessor pageProcessor;
 
-    private DownLoader downLoader;
+    private DownLoader downLoader = new HttpClientDownloader();
 
     private Request request;
 
@@ -60,5 +62,10 @@ public class Bee implements Runnable{
 
     public Page pageProcessor(Request request){
         return downLoader.download(request, this);
+    }
+
+    @Override
+    public Setting getSetting() {
+        return setting;
     }
 }

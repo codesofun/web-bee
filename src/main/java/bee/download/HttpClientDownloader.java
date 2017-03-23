@@ -3,6 +3,7 @@ package bee.download;
 import bee.Bee;
 import bee.linker.Page;
 import bee.linker.Request;
+import bee.processor.Task;
 
 import java.util.logging.Logger;
 
@@ -15,7 +16,9 @@ public class HttpClientDownloader implements DownLoader{
     private Logger logger = Logger.getLogger(String.valueOf(getClass()));
 
     @Override
-    public Page download(Request request, Bee bee) {
-
+    public Page download(Request request, Task task) {
+        logger.info("this is LOG4J ~!");
+        Page page = new Page();
+        return page;
     }
 }
