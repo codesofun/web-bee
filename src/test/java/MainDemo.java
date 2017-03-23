@@ -16,7 +16,7 @@ import bee.processor.Setting;
 public class MainDemo implements PageProcessor{
 
     private Setting setting;
-    
+
     @Override
     public void process(Page page) {
         System.out.println("This is MainDemo's process function ...");

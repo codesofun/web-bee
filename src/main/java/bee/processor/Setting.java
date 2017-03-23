@@ -17,6 +17,13 @@ public class Setting {
     private String password;
 
     /**
+     * 个性化配置类入口返回配置对象,省去了new Setting()的步骤
+     * @return
+     */
+    public static Setting create() {
+        return new Setting();
+    }
+    /**
      * 设置一个作用域
      * @param domain
      * @return
@@ -56,7 +63,37 @@ public class Setting {
         return this;
     }
 
-    public static Setting create() {
-        return new Setting();
+    /**
+     * 获取已经设置的作用域
+     * @return
+     */
+    public String getDomain() {
+        return domain;
     }
+
+    /**
+     * 获取已经设置的userAgent
+     * @return
+     */
+    public String getUserAgent() {
+        return userAgent;
+    }
+
+    /**
+     * 获取已经设置的账户
+     * @return
+     */
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * 获取已经设置的密码
+     * @return
+     */
+    public String getPassword() {
+        return password;
+    }
+
+
 }
