@@ -1,4 +1,4 @@
-package bee_core.download;
+package bee_core.HttpClient;
 
 import bee_core.processor.Setting;
 import org.apache.http.client.config.CookieSpecs;

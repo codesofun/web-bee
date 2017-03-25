@@ -1,5 +1,6 @@
 package bee_core.download;
 
+import bee_core.download.DownLoader;
 import bee_core.linker.Page;
 import bee_core.linker.Request;
 import bee_core.processor.Task;
@@ -11,7 +12,7 @@ import java.util.logging.Logger;
  * E-mail   sis.nonacosa@gmail.com
  * @author sis.nonacosa
  */
-public class HttpClientDownloader implements DownLoader{
+public class HttpClientDownloader implements DownLoader {
     private Logger logger = Logger.getLogger(String.valueOf(getClass()));
 
     @Override
