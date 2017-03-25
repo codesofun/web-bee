@@ -7,6 +7,7 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import sun.net.www.http.HttpClient;
@@ -22,10 +23,12 @@ import java.util.Map;
  */
 public class HttpClientPool {
 
-    public void generateClient(Setting setting){
-        RequestConfig requestConfig = RequestConfig.custom().setCookieSpec(CookieSpecs.STANDARD_STRICT).build();
-        CloseableHttpClient httpClient = HttpClients.custom().setDefaultRequestConfig(requestConfig).build();
-        HttpGet getHomePage = new HttpGet(setting.getStartUrl());
+    public HttpClientBuilder generateClient(Setting setting){
+        RequestConfig requestConfig = RequestConfig.custom().build();
+        HttpClientBuilder httpClient = HttpClients.custom().setDefaultRequestConfig(requestConfig);
+
+        generateCookies(httpClient,setting);
+        return httpClient;
     }
 
     /**
@@ -33,13 +36,14 @@ public class HttpClientPool {
      * @param httpClient
      * @param setting
      */
-    public void generateCookies(CloseableHttpClient httpClient, Setting setting){
+    public void generateCookies(HttpClientBuilder httpClient, Setting setting){
         CookieStore cookieStore = new BasicCookieStore();
         for(Map.Entry<String,String> cookieEntry : setting.getCookies().entrySet()){
             BasicClientCookie cookie = new BasicClientCookie(cookieEntry.getKey(), cookieEntry.getValue());
             cookie.setDomain(setting.getDomain());
             cookie.setPath("/");
             cookieStore.addCookie(cookie);
+             httpClient.setDefaultCookieStore(cookieStore).build();
         }
     }
 }

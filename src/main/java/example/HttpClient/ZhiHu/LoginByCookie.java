@@ -12,6 +12,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.util.EntityUtils;
@@ -31,9 +32,9 @@ public class LoginByCookie {
     }
 
     public static void login() throws IOException {
-        RequestConfig requestConfig = RequestConfig.custom().setCookieSpec(CookieSpecs.STANDARD_STRICT).build();
+        RequestConfig requestConfig = RequestConfig.custom().build();
 
-        HttpGet getHomePage = new HttpGet("http://www.ZhiHu.com/");
+//        HttpGet getHomePage = new HttpGet("http://www.ZhiHu.com/");
 
         // Create a local instance of cookie store
         CookieStore cookieStore = new BasicCookieStore();
