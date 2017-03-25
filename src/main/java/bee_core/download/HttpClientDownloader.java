@@ -1,10 +1,17 @@
 package bee_core.download;
 
+import bee_core.HttpClient.HttpClientPool;
 import bee_core.download.DownLoader;
 import bee_core.linker.Page;
 import bee_core.linker.Request;
+import bee_core.processor.Setting;
 import bee_core.processor.Task;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 /**
@@ -17,8 +24,18 @@ public class HttpClientDownloader implements DownLoader {
 
     @Override
     public Page download(Request request, Task task) {
-        logger.info("this is LOG4J ~!");
         Page page = new Page();
+        Setting setting = task.getSetting();
+        HttpClientBuilder httpClientBuilder = HttpClientPool.getInstance().generateClient(setting);
+        HttpGet httpGet = new HttpGet(request.getUrl());
+        CloseableHttpClient closeableHttpClient = httpClientBuilder.build();
+        try {
+            CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpGet);
+
+            return page;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return page;
     }
 }

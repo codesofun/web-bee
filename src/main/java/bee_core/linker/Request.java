@@ -25,4 +25,7 @@ public class Request {
         this.message = message;
     }
 
+    public String getUrl(){
+        return this.url;
+    }
 }

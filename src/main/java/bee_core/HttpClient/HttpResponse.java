@@ -1,5 +1,7 @@
 package bee_core.HttpClient;
 
+import org.apache.http.client.methods.CloseableHttpResponse;
+
 /**
  * 封装HTTP响应
  *

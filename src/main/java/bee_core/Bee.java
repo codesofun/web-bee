@@ -62,7 +62,7 @@ public class Bee implements Runnable,Task {
 
     public Page pageProcessor(Request request){
 
-        return downLoader.download(request, this);
+        return downLoader.download(request, this); //annotation: this 'this' to substitute one expression with Task's implement
     }
 
     @Override

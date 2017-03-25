@@ -48,7 +48,7 @@ public class LoginByCookie {
         cookie2.setDomain("zhihu.com");
         cookie2.setPath("/");
         cookieStore.addCookie(cookie2);
-// Set the store
+        // Set the store
 
         CloseableHttpClient httpClient = HttpClients.custom().setDefaultRequestConfig(requestConfig).setDefaultCookieStore(cookieStore).build();
 

@@ -2,15 +2,11 @@ package bee_core.HttpClient;
 
 import bee_core.processor.Setting;
 import org.apache.http.client.CookieStore;
-import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicCookieStore;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.cookie.BasicClientCookie;
-import sun.net.www.http.HttpClient;
 
 import java.util.Map;
 
@@ -23,6 +19,18 @@ import java.util.Map;
  */
 public class HttpClientPool {
 
+    public static HttpClientPool getInstance(){
+        return new HttpClientPool();
+    }
+
+    public HttpClientBuilder getClient(Setting setting){
+        return generateClient(setting);
+    }
+    /**
+     * 根据配置自动生成需要的HTTP配置
+     * @param setting
+     * @return
+     */
     public HttpClientBuilder generateClient(Setting setting){
         RequestConfig requestConfig = RequestConfig.custom().build();
         HttpClientBuilder httpClient = HttpClients.custom().setDefaultRequestConfig(requestConfig);
