@@ -9,4 +9,5 @@ package bee_core.HttpClient;
  * @author sis.nonacosa
  */
 public class HttpRequest {
+
 }
