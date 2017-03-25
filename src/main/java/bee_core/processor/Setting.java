@@ -1,5 +1,9 @@
 package bee_core.processor;
 
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
  * 爬虫的配置类
  * data 2017-03-23   01:55
@@ -17,6 +21,8 @@ public class Setting {
     private String password;
 
     private String startUrl;
+
+    private Map<String,String> cookies = new LinkedHashMap<String, String>();//todo Collections.synchronizedMap?
 
     /**
      * 个性化配置类入口返回配置对象,省去了new Setting()的步骤
@@ -103,6 +109,16 @@ public class Setting {
 
     public Setting setStartUrl(String startUrl) {
         this.startUrl = startUrl;
+        return this;
+    }
+
+
+    public Map<String, String> getCookies() {
+        return cookies;
+    }
+
+    public Setting setCookies(String key, String value) {
+        cookies.put(key,value);
         return this;
     }
 
