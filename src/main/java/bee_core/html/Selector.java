@@ -1,16 +1,24 @@
 package bee_core.html;
 
 /**
+ * selector html Document list with css selector.
+ * <p>
  * data 2017-03-21   01:52
  * E-mail   sis.nonacosa@gmail.com
+ *
  * @author sis.nonacosa
  */
 public interface Selector {
 
     /**
-     * selector html Document list with css selector.
+     * 使用类似Jquery $ 选择器
+     *
      * @param selector
      * @return
      */
-    Selector $ (String selector);
+    Selector $(String selector);
+
+    
+
+
 }
