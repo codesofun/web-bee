@@ -48,7 +48,7 @@ public class Bee implements Runnable,Task {
     public void run() {
         requestProcessor();
 
-        System.out.println("this is Bee.class implement Runnable's run function! --request:" + request);
+        System.out.println("this is Bee.class implement Runnable's run function! --request:" + request.toString());
         pageProcessor.process(pageProcessor(request));
     }
 
@@ -61,6 +61,7 @@ public class Bee implements Runnable,Task {
     }
 
     public Page pageProcessor(Request request){
+
         return downLoader.download(request, this);
     }
 
