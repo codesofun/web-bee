@@ -1,4 +1,4 @@
-package bee.linker;
+package bee_core.linker;
 
 /**
  * data 2017-03-20   23:15

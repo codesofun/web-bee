@@ -1,7 +1,7 @@
-package bee.linker;
+package bee_core.linker;
 
 
-import bee.html.Selector;
+import bee_core.html.Selector;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;

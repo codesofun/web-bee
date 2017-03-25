@@ -1,4 +1,4 @@
-package bee.linker;
+package bee_core.linker;
 
 import java.util.HashMap;
 import java.util.Map;

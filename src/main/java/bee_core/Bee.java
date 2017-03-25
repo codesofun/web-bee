@@ -1,12 +1,12 @@
-package bee;
+package bee_core;
 
-import bee.download.DownLoader;
-import bee.download.HttpClientDownloader;
-import bee.linker.Page;
-import bee.linker.Request;
-import bee.processor.PageProcessor;
-import bee.processor.Setting;
-import bee.processor.Task;
+import bee_core.download.DownLoader;
+import bee_core.download.HttpClientDownloader;
+import bee_core.linker.Page;
+import bee_core.linker.Request;
+import bee_core.processor.PageProcessor;
+import bee_core.processor.Setting;
+import bee_core.processor.Task;
 
 /**
  * webBee框架核心入口

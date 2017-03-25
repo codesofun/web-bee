@@ -1,4 +1,4 @@
-package bee.utils;
+package bee_core.utils;
 
 /**
  * data 2017-03-21   00:03

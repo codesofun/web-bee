@@ -1,6 +1,6 @@
-package bee.processor;
+package bee_core.processor;
 
-import bee.linker.Page;
+import bee_core.linker.Page;
 
 /**
  * 页面处理

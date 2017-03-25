@@ -1,4 +1,4 @@
-package bee.html;
+package bee_core.html;
 
 /**
  * data 2017-03-21   01:52

@@ -1,4 +1,4 @@
-package bee.processor;
+package bee_core.processor;
 
 /**
  * Created by zhuang on 2017/3/23.

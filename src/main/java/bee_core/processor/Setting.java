@@ -1,6 +1,4 @@
-package bee.processor;
-
-import java.util.List;
+package bee_core.processor;
 
 /**
  * 爬虫的配置类

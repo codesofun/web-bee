@@ -1,9 +1,8 @@
-package bee.download;
+package bee_core.download;
 
-import bee.Bee;
-import bee.linker.Page;
-import bee.linker.Request;
-import bee.processor.Task;
+import bee_core.linker.Page;
+import bee_core.linker.Request;
+import bee_core.processor.Task;
 
 /**
  * @author sis.nonacosa

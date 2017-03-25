@@ -2,10 +2,11 @@
  * Created by zhuang on 2017/3/23.
  */
 
-import bee.Bee;
-import bee.linker.Page;
-import bee.processor.PageProcessor;
-import bee.processor.Setting;
+import bee_core.Bee;
+import bee_core.annotation.HelloAnnotation;
+import bee_core.linker.Page;
+import bee_core.processor.PageProcessor;
+import bee_core.processor.Setting;
 
 /**
  * data 2017-03-23   01:19
@@ -13,6 +14,8 @@ import bee.processor.Setting;
  *
  * @author sis.nonacosa
  */
+
+@HelloAnnotation(name="someName",  value = "Hello World")
 public class MainDemo implements PageProcessor{
 
     private Setting setting;
@@ -28,6 +31,8 @@ public class MainDemo implements PageProcessor{
         setting = Setting.create().setStartUrl("https://www.ZhiHu.com/login/phone_num").setUserName("pkwenda").setPassword("886pkxiaojiba");
         return setting;
     }
+
+
 
     public static void main(String[] args) {
         Bee.create(new MainDemo()).run();
