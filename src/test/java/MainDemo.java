@@ -31,6 +31,7 @@ public class MainDemo implements PageProcessor{
         setting = Setting.create().setStartUrl("https://www.ZhiHu.com/login/phone_num").setUserName("pkwenda").setPassword("886pkxiaojiba");
         setting = setting.setCookies("z_c0","Mi4wQUFEQUZwSzEzZ2tBY01ERVdCM0lDUmNBQUFCaEFsVk5WQjcyV0FEb0RnYlI3QnFQSWtzSWMzTjRHQVN0YlNlTW1R");
         setting = setting.setCookies("_xsrf","8e8eedb720402d12bce9b5e611837b6d");
+        setting = setting.setDomain("zhihu.com");
         return setting;
     }
 
