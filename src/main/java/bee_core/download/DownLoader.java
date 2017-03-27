@@ -3,7 +3,6 @@ package bee_core.download;
 import bee_core.linker.Page;
 import bee_core.linker.Request;
 import bee_core.processor.Task;
-import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
 
 /**
  * @author sis.nonacosa

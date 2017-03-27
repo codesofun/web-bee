@@ -2,10 +2,8 @@ package bee_core.linker;
 
 
 import bee_core.html.Html;
-import bee_core.html.Selector;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.impl.client.CloseableHttpClient;
 
 import java.util.List;
 

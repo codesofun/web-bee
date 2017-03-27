@@ -1,7 +1,6 @@
 package bee_core.download;
 
 import bee_core.HttpClient.HttpClientPool;
-import bee_core.download.DownLoader;
 import bee_core.linker.Page;
 import bee_core.linker.Request;
 import bee_core.processor.Setting;

@@ -3,7 +3,6 @@ package example.HttpClient;
 /**
  * Created by zhuang on 2017/3/10.
  */
-import java.util.Date;
 import java.util.List;
 
 import org.apache.http.client.CookieStore;
@@ -14,7 +13,6 @@ import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.util.EntityUtils;
 
 /**
