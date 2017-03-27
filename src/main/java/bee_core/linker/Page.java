@@ -1,8 +1,11 @@
 package bee_core.linker;
 
 
+import bee_core.html.Html;
 import bee_core.html.Selector;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.impl.client.CloseableHttpClient;
 
 import java.util.List;
 
@@ -19,11 +22,9 @@ public class Page {
 
     private Result result;
 
-    private Selector html;
+    private Html html;
 
-    public Selector getHtml() {
-        return html;
-    }
+
 
     public void addWaitRequest(List<String> requests){
         //TODO: synchronized  单线程?
@@ -34,5 +35,13 @@ public class Page {
 //            s = UrlUtils.canonicalizeUrl(s, url.toString());
             waitRequests.add(new Request(s));
         }
+    }
+
+    public void setHtml(CloseableHttpResponse closeableHttpClient) {
+        this.html =  new Html().getDocument(closeableHttpClient);
+    }
+
+    public Html getHtml(){
+        return this.html;
     }
 }

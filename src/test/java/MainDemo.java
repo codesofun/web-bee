@@ -4,9 +4,15 @@
 
 import bee_core.Bee;
 import bee_core.annotation.HelloAnnotation;
+import bee_core.html.Html;
+import bee_core.html.Selector;
 import bee_core.linker.Page;
 import bee_core.processor.PageProcessor;
 import bee_core.processor.Setting;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 /**
  * data 2017-03-23   01:19
@@ -22,7 +28,9 @@ public class MainDemo implements PageProcessor{
 
     @Override
     public void process(Page page) {
+        Elements elements = page.getHtml().$("textarea.content").all();
         System.out.println("This is MainDemo's process function ...");
+        System.out.println(elements);
     }
 
     @Override

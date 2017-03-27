@@ -31,6 +31,8 @@ public class HttpClientDownloader implements DownLoader {
         CloseableHttpClient closeableHttpClient = httpClientBuilder.build();
         try {
             CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpGet);
+            page.setHtml(closeableHttpResponse);
+            closeableHttpResponse.close();
             //todo  do while策略处理异常
             return page;
         } catch (IOException e) {

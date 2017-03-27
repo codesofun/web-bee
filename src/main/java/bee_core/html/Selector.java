@@ -18,7 +18,6 @@ public interface Selector {
      */
     Selector $(String selector);
 
-    
 
 
 }
