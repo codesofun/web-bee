@@ -21,7 +21,6 @@ import org.jsoup.select.Elements;
  * @author sis.nonacosa
  */
 
-@HelloAnnotation(name="someName",  value = "Hello World")
 public class MainDemo implements PageProcessor{
 
     private Setting setting;
@@ -36,7 +35,7 @@ public class MainDemo implements PageProcessor{
     @Override
     public Setting getSetting() {
         System.out.println("This is MainDemo's setting function ...");
-        setting = Setting.create().setStartUrl("http://www.ZhiHu.com/explore").setUserName("pkwenda").setPassword("886pkxiaojiba");
+        setting = Setting.create().setStartUrl("http://www.ZhiHu.com/explore");
         setting = setting.setCookies("z_c0","Mi4wQUFEQUZwSzEzZ2tBY01ERVdCM0lDUmNBQUFCaEFsVk5WQjcyV0FEb0RnYlI3QnFQSWtzSWMzTjRHQVN0YlNlTW1R");
         setting = setting.setCookies("_xsrf","8e8eedb720402d12bce9b5e611837b6d");
         setting = setting.setDomain("zhihu.com");
