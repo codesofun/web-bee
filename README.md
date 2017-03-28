@@ -1,6 +1,6 @@
 
 ## webBee 为乐趣而爬
-[![License](https://img.shields.io/badge/license-MIT-4EB1BA.svg?style=flat-square)](https://github.com/pkwenda/webBee/blob/master/LICENSE)                                    [![Build Status](https://travis-ci.org/pkwenda/webBee.svg?branch=master)](https://travis-ci.org/pkwenda/webBee)               [![Gitter](https://badges.gitter.im/pkwenda/web-bee.svg)](https://gitter.im/web_bee)
+[![License](https://img.shields.io/badge/license-MIT-4EB1BA.svg?style=flat-square)](https://github.com/pkwenda/webBee/blob/master/LICENSE)                                    [![Build Status](https://travis-ci.org/pkwenda/webBee.svg?branch=master)](https://travis-ci.org/pkwenda/webBee)               [![Gitter](https://badges.gitter.im/pkwenda/web-bee.svg)](https://gitter.im/web_bee)    [![Analytics](https://ga-beacon.appspot.com/UA-96341091-1/welcome-page)](https://github.com/pkwenda/webBee)
 
  
 
@@ -16,25 +16,25 @@
 
 
 
-## 演示站点
+### 演示站点
 - https://gitrue.com (备案中)
 
 
-## 设计初衷
+### 设计初衷
 
 + 设计简洁，面向接口
 + 配置简单，明了
 + 一次配置，自动匹配
 
 
-## 涉及技术栈
+### 涉及技术栈
 - `httpcomponents`
 - `jsoup`
 - `redis`
 -  `代理`
 - `多线程`
 
-## 即将完善的内容
+### 即将完善的内容
 + 分布式爬取
 + 代理接口
 + 通过配置智能寻找目标 `url`
@@ -43,7 +43,7 @@
 + 制作一个炫酷的官网实例 
  
  
-## 开源协议
+### 开源协议
 
 [MIT](LICENSE)
  
