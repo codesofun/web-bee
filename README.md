@@ -1,6 +1,6 @@
 
 ## webBee 为乐趣而爬
-[![License](https://img.shields.io/badge/license-MIT-4EB1BA.svg?style=flat-square)](https://github.com/pkwenda/webBee/blob/master/LICENSE)                                    [![Build Status](https://travis-ci.org/pkwenda/webBee.svg?branch=master)](https://travis-ci.org/pkwenda/webBee)               [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/web_bee/)
+[![License](https://img.shields.io/badge/license-MIT-4EB1BA.svg?style=flat-square)](https://github.com/pkwenda/webBee/blob/master/LICENSE)                                    [![Build Status](https://travis-ci.org/pkwenda/webBee.svg?branch=master)](https://travis-ci.org/pkwenda/webBee)               [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/web_bee)
  
 
 - `webBee` 基于`jdk8` 是一个持续成长的`垂直爬虫框架`项目 
