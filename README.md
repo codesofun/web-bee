@@ -1,5 +1,7 @@
 
 ## webBee 为乐趣而爬
+
+[![Join the chat at https://gitter.im/web_bee/Lobby](https://badges.gitter.im/web_bee/Lobby.svg)](https://gitter.im/web_bee/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![License](https://img.shields.io/badge/license-MIT-4EB1BA.svg?style=flat-square)](https://github.com/pkwenda/webBee/blob/master/LICENSE)                                    [![Build Status](https://travis-ci.org/pkwenda/webBee.svg?branch=master)](https://travis-ci.org/pkwenda/webBee)
  
 
