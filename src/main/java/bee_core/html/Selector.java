@@ -16,7 +16,7 @@ public interface Selector {
      * @param selector
      * @return
      */
-    Selector $(String selector);
+    Selector $(String selector); 
 
 
 
