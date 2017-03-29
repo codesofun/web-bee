@@ -17,7 +17,7 @@
 
 
 ### 演示站点
-- https://gitrue.com (备案中)
+- http://gitrue.com (备案成功，开发中)
 
 
 ### 设计初衷

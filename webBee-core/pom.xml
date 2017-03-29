@@ -12,6 +12,9 @@
 <groupId>bee.reptile</groupId>
 <artifactId>webBee-core</artifactId>
 <version>0.0.1</version>
+<name>webBee-core</name>
+<url>http://maven.apache.org</url>
+
 <build>
     <plugins>
         <plugin>
