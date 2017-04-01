@@ -4,6 +4,7 @@
 
 
 
+import com.alibaba.fastjson.JSON;
 import org.bee.webBee.Bee;
 import org.bee.webBee.linker.Page;
 import org.bee.webBee.processor.PageProcessor;
@@ -23,10 +24,18 @@ public class MainDemo implements PageProcessor {
 
     @Override
     public void process(Page page) {
+        //todo page.getJson/html/string().$('textarea.content').as('content').bulid().$('#img').as('img')
+        //todo 期望结果: {content:[],img:[]} 一条{}多条[] 的json格式
+        //todo page.nextUrl('span>ss>s')
+        //todo 直接获取api接口
         Elements elements = page.getHtml().$("textarea.content").all();
 
         System.out.println("This is MainDemo's process function ...");
-        System.out.println(elements);
+        System.out.println(elements.toString());
+
+        String strJson= JSON.toJSONString(elements.toString());
+        System.out.println("------------");
+        System.out.println(strJson);
     }
 
     @Override
