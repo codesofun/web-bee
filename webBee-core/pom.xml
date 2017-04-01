@@ -72,7 +72,7 @@
     <dependency>
         <groupId>com.alibaba</groupId>
         <artifactId>fastjson</artifactId>
-        <version>1.1.56.android</version>
+        <version>1.2.28</version>
     </dependency>
 
 
