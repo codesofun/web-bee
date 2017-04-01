@@ -24,6 +24,7 @@ public class MainDemo implements PageProcessor {
     @Override
     public void process(Page page) {
         Elements elements = page.getHtml().$("textarea.content").all();
+
         System.out.println("This is MainDemo's process function ...");
         System.out.println(elements);
     }
