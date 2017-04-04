@@ -6,6 +6,5 @@ package org.bee.webBee.html;
  * @author sis.nonacosa
  */
 public interface JsonParser {
-
-
+    
 }
