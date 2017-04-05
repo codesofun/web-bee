@@ -13,6 +13,11 @@ import java.util.List;
  */
 public class ElementUtil {
 
+    /**
+     * 根据elements元素生成list结果集
+     * @param elements
+     * @return
+     */
     public static List<String>  elementsToList(Elements elements){
         List<String> elementsList = new ArrayList<String>();
         for(Element element : elements){
