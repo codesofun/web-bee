@@ -1,5 +1,6 @@
 package org.bee.webBee.html;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.Jsoup;
@@ -7,6 +8,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.sql.ParameterMetaData;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * data 2017-03-26   01:07
@@ -20,6 +24,8 @@ public class Html implements Selector,HtmlParser  {
 
     private Elements elements;
 
+    private Map<String,String> elementsMap = new HashMap<String, String>();
+
     public Html(){
 
     }
@@ -31,6 +37,12 @@ public class Html implements Selector,HtmlParser  {
     public Html (Document document , Elements elements){
         this.document = document;
         this.elements = elements;
+    }
+
+    public Html (Document document , Elements elements ,Map<String,String> elementsMap){
+        this.document = document;
+        this.elements = elements;
+        this.elementsMap = elementsMap;
     }
 
     @Override
@@ -47,11 +59,19 @@ public class Html implements Selector,HtmlParser  {
 
     @Override
     public Html $(String selector) {
-        return new Html(this.document,document.select(selector));
+        this.elements = document.select(selector);
+        return this;
+//        return new Html(this.document,document.select(selector));
+//        return as("s")
     }
 
-    public Elements all(){
-        return this.elements;
+    public Html as (String key){
+        this.elementsMap.put(key,this.elements.toString());
+        return new Html(this.document,this.elements,this.elementsMap);
+    }
+
+    public String toJSONString(){
+        return JSON.toJSONString(this.elementsMap);
     }
 
 

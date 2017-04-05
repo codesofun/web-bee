@@ -8,4 +8,3 @@ package org.bee.webBee.html;
 public interface JsonParser {
 
 }
- 
