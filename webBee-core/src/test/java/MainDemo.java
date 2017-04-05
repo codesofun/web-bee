@@ -12,6 +12,7 @@ import org.bee.webBee.processor.PageProcessor;
 import org.bee.webBee.processor.Setting;
 import org.jsoup.select.Elements;
 
+
 /**
  * data 2017-03-23   01:19
  * E-mail   sis.nonacosa@gmail.com
@@ -29,15 +30,8 @@ public class MainDemo implements PageProcessor {
         //todo 期望结果: {content:[],img:[]} 一条{}多条[] 的json格式
         //todo page.nextUrl('span>ss>s')
         //todo 直接获取api接口
-//        Elements elements = page.getHtml().$("textarea.content").as("content").build();
-        String elements = page.getHtml().$("textarea.content").as("content").$("textarea.content").as("content2").toJSONString();
-        System.out.println(elements);
-//        System.out.println("This is MainDemo's process function ...");
-//        System.out.println(elements.toString());
-//
-//        String strJson= JSON.toJSONString(elements.toString());
-//        System.out.println("------------");
-//        System.out.println(strJson);
+        String json = page.getHtml().$("textarea.content").as("content").$("a.question_link").as("title").toJSONString();
+        System.out.println(json);
     }
 
     @Override
