@@ -42,4 +42,8 @@ public class Page {
     public Html getHtml(){
         return this.html;
     }
+
+    public  Html getApi() {
+        return this.html;
+    }
 }

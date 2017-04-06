@@ -107,7 +107,12 @@ public class Setting {
         return startUrl;
     }
 
-    public Setting setStartUrl(String startUrl) {
+    public Setting setStartUrl (String startUrl) {
+        this.startUrl = startUrl;
+        return this;
+    }
+
+    public Setting setApi (String startUrl) {
         this.startUrl = startUrl;
         return this;
     }
