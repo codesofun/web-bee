@@ -1,6 +1,8 @@
 package org.bee.webBee.HttpClient;
 
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.bee.webBee.linker.Request;
 import org.bee.webBee.processor.Setting;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.config.RequestConfig;
@@ -8,6 +10,7 @@ import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.cookie.BasicClientCookie;
+import org.bee.webBee.processor.Task;
 
 import java.util.Map;
 
@@ -65,5 +68,13 @@ public class HttpClientPool {
             cookieStore.addCookie(cookie);
              httpClient.setDefaultCookieStore(cookieStore).build();
         }
+    }
+
+    public HttpRequestBase generateHttpMethod(Request request,Task task , HttpRequestBase httpRequestBase ){
+        if(task.getSetting().getHttpMethod().equals("GET")) {
+            httpRequestBase = new HttpGet(request.getUrl());
+            return  httpRequestBase;
+        }
+        return  httpRequestBase;
     }
 }

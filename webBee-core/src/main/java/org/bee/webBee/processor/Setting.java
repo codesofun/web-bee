@@ -1,6 +1,8 @@
 package org.bee.webBee.processor;
 
 
+import org.apache.http.client.methods.HttpRequestBase;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -21,6 +23,8 @@ public class Setting {
     private String password;
 
     private String startUrl;
+
+    private String httpMethod;
 
     private Map<String,String> cookies = new LinkedHashMap<String, String>();//todo Collections.synchronizedMap?
 
@@ -144,5 +148,14 @@ public class Setting {
         return this;
     }
 
+
+    public String getHttpMethod() {
+        return  httpMethod;
+    }
+
+    public Setting setHttpMethod(String httpMethod) {
+        this.httpMethod =  httpMethod;
+        return this;
+    }
 
 }

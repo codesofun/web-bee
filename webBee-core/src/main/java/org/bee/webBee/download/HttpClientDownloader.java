@@ -1,5 +1,7 @@
 package org.bee.webBee.download;
 
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpRequestBase;
 import org.bee.webBee.HttpClient.HttpClientPool;
 import org.bee.webBee.linker.Page;
 import org.bee.webBee.linker.Request;
@@ -25,11 +27,13 @@ public class HttpClientDownloader implements DownLoader {
     public Page download(Request request, Task task) {
         Page page = new Page();
         Setting setting = task.getSetting();
-        HttpGet httpGet = new HttpGet(request.getUrl());
-        HttpClientBuilder httpClientBuilder = HttpClientPool.getInstance().generateClient(setting,httpGet);
+        HttpRequestBase httpMethod =  null;
+        httpMethod = HttpClientPool.getInstance().generateHttpMethod(request,task,httpMethod);
+
+        HttpClientBuilder httpClientBuilder = HttpClientPool.getInstance().generateClient(setting,httpMethod);
         CloseableHttpClient closeableHttpClient = httpClientBuilder.build();
         try {
-            CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpGet);
+            CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpMethod);
             page.setHtml(closeableHttpResponse);
             closeableHttpResponse.close();
             //todo  do while策略处理异常

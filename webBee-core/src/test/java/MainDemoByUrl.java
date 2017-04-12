@@ -4,6 +4,7 @@
 
 
 
+import org.apache.http.client.methods.HttpGet;
 import org.bee.webBee.Bee;
 import org.bee.webBee.linker.Page;
 import org.bee.webBee.processor.PageProcessor;
@@ -39,6 +40,7 @@ public class MainDemoByUrl implements PageProcessor {
         setting = setting.setCookies("z_c0","Mi4wQUFEQUZwSzEzZ2tBY01ERVdCM0lDUmNBQUFCaEFsVk5WQjcyV0FEb0RnYlI3QnFQSWtzSWMzTjRHQVN0YlNlTW1R");
         setting = setting.setCookies("_xsrf","8e8eedb720402d12bce9b5e611837b6d");
         setting = setting.setDomain("zhihu.com");
+        setting = setting.setHttpMethod("GET");
         return setting;
     }
 
