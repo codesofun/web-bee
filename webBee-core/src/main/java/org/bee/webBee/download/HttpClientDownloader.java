@@ -25,8 +25,8 @@ public class HttpClientDownloader implements DownLoader {
     public Page download(Request request, Task task) {
         Page page = new Page();
         Setting setting = task.getSetting();
-        HttpClientBuilder httpClientBuilder = HttpClientPool.getInstance().generateClient(setting);
         HttpGet httpGet = new HttpGet(request.getUrl());
+        HttpClientBuilder httpClientBuilder = HttpClientPool.getInstance().generateClient(setting,httpGet);
         CloseableHttpClient closeableHttpClient = httpClientBuilder.build();
         try {
             CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpGet);

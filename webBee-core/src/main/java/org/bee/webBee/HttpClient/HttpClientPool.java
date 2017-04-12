@@ -1,5 +1,6 @@
 package org.bee.webBee.HttpClient;
 
+import org.apache.http.client.methods.HttpRequestBase;
 import org.bee.webBee.processor.Setting;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.config.RequestConfig;
@@ -23,20 +24,31 @@ public class HttpClientPool {
         return new HttpClientPool();
     }
 
-    public HttpClientBuilder getClient(Setting setting){
-        return generateClient(setting);
+    public HttpClientBuilder getClient(Setting setting,HttpRequestBase httpMethod){
+        return generateClient(setting,httpMethod);
     }
     /**
      * 根据配置自动生成需要的HTTP配置
      * @param setting
      * @return
      */
-    public HttpClientBuilder generateClient(Setting setting){
+    public HttpClientBuilder generateClient(Setting setting, HttpRequestBase httpMethod){
         RequestConfig requestConfig = RequestConfig.custom().build();
         HttpClientBuilder httpClient = HttpClients.custom().setDefaultRequestConfig(requestConfig);
-
+        generateHeaders(httpMethod,setting);
         generateCookies(httpClient,setting);
         return httpClient;
+    }
+
+    /**
+     * 根据配置自动生成需要的 header
+     * @param httpMethod
+     * @param setting
+     */
+    private void generateHeaders(HttpRequestBase httpMethod, Setting setting) {
+        for(Map.Entry<String,String> headerEntry : setting.getHeader().entrySet()){
+            httpMethod.setHeader(headerEntry.getKey(),headerEntry.getValue());
+        }
     }
 
     /**

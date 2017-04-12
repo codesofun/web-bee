@@ -24,6 +24,8 @@ public class Setting {
 
     private Map<String,String> cookies = new LinkedHashMap<String, String>();//todo Collections.synchronizedMap?
 
+    private Map<String,String> headers = new LinkedHashMap<String, String>();//todo Collections.synchronizedMap?
+
     /**
      * 个性化配置类入口返回配置对象,省去了new Setting()的步骤
      * @return
@@ -40,6 +42,21 @@ public class Setting {
         this.domain = domain;
         return this ;
     }
+
+    /**
+     * 为请求设置header
+     * @param domain
+     * @return
+     */
+    public Setting addHeader(String key , String value) {
+        headers.put(key,value);
+        return this ;
+    }
+
+    public  Map<String, String> getHeader() {
+        return headers;
+    }
+
 
     /**
      * 设置一个userAgent
