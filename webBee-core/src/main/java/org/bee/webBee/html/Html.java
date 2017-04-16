@@ -26,7 +26,7 @@ public class Html implements Selector,HtmlParser  {
 
     private Elements elements;
 
-    private Map<String,List<String>> elementsMap = new HashMap<String, List<String>>();
+    private Map<String,List<String>> elementsMap = new HashMap<String, List<String>>() ;
 
     public Html(){
 
