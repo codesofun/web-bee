@@ -21,6 +21,7 @@ import java.util.logging.Logger;
  * @author sis.nonacosa
  */
 public class HttpClientDownloader implements DownLoader {
+
     private Logger logger = Logger.getLogger(String.valueOf(getClass()));
 
     @Override
