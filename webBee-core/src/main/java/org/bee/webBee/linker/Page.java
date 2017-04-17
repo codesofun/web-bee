@@ -1,10 +1,13 @@
 package org.bee.webBee.linker;
 
 
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.bee.webBee.html.Html;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -22,6 +25,10 @@ public class Page {
 
     private Html html;
 
+    private CloseableHttpResponse closeableHttpClient;
+
+    private String api;
+
 
 
     public void addWaitRequest(List<String> requests){
@@ -35,15 +42,16 @@ public class Page {
         }
     }
 
-    public void setHtml(CloseableHttpResponse closeableHttpClient) {
-        this.html =  new Html().getDocument(closeableHttpClient);
+    public void setHtml(CloseableHttpResponse closeableHttpClient) throws IOException {
+        this.html =  new Html(closeableHttpClient).getDocument();
+//        this.api = EntityUtils.toString(closeableHttpClient.getEntity());
     }
 
     public Html getHtml(){
         return this.html;
     }
 
-    public  Html getApi() {
-        return this.html;
+    public  String getApi()   {
+        return html.getApi();
     }
 }

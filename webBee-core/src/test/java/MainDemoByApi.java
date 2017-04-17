@@ -10,6 +10,8 @@ import org.bee.webBee.linker.Page;
 import org.bee.webBee.processor.PageProcessor;
 import org.bee.webBee.processor.Setting;
 
+import java.io.IOException;
+
 
 /**
  * 类似servlet 实现HttpServlet doGet doPost 方法的方式定义爬虫
@@ -23,16 +25,16 @@ public class MainDemoByApi implements PageProcessor {
     private Setting setting;
 
     @Override
-    public void process(Page page) {
+    public void process(Page page) throws IOException {
         //todo page.getJson/html/string().$('textarea.content').as('content').bulid().$('#img').as('img')
         //todo 期望结果: {content:[],img:[]} 一条{}多条[] 的json格式
         //todo page.nextUrl('span>ss>s')
         //todo 直接获取api接口
 //        String json = page.getHtml().$("textarea.content").as("content").$("a.question_link").as("title").toJSONString();
-        page.getApi();
+        String api = page.getApi();
 
         System.out.println("api result:");
-        System.out.println(page.getHtml());
+        System.out.println(api);
     }
 
     @Override

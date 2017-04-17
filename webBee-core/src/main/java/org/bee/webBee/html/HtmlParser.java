@@ -9,9 +9,9 @@ public interface HtmlParser {
 
     /**
      * 获取一个文档类型
-     * @param httpResponse
+     * @param
      * @return
      */
-    HtmlParser getDocument(CloseableHttpResponse httpResponse);
+    HtmlParser getDocument();
 
 }

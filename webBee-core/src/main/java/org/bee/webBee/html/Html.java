@@ -22,46 +22,58 @@ import java.util.Map;
  */
 public class Html implements Selector,HtmlParser  {
 
-    private Document document;
+    private String  document;
 
     private Elements elements;
 
     private Map<String,List<String>> elementsMap = new HashMap<String, List<String>>() ;
 
+    private CloseableHttpResponse closeableHttpClient;
+
     public Html(){
 
     }
 
-    public Html (Document document){
+    public Html (String document){
         this.document = document;
     }
 
-    public Html (Document document , Elements elements){
+    public Html ( CloseableHttpResponse closeableHttpClient){
+        this.closeableHttpClient = closeableHttpClient;
+    }
+
+    public Html (String document , Elements elements){
         this.document = document;
         this.elements = elements;
     }
 
-    public Html (Document document , Elements elements ,Map<String,List<String>> elementsMap){
+    public Html (String document , Elements elements ,Map<String,List<String>> elementsMap){
         this.document = document;
         this.elements = elements;
         this.elementsMap = elementsMap;
     }
 
     @Override
-    public Html getDocument(CloseableHttpResponse httpResponse)   {
+    public Html getDocument()   {
         try {
-            Document document = Jsoup.parse(EntityUtils.toString(httpResponse.getEntity()));
-            return new Html(document);
+//            Document document = Jsoup.parse(EntityUtils.toString(httpResponse.getEntity()));
+             String html = EntityUtils.toString(this.closeableHttpClient.getEntity());
+            return new Html(html);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return new Html(document);
+
+        return new Html("");
+    }
+
+    public String getApi(){
+        return document;
     }
 
     @Override
     public Html $(String selector) {
-        this.elements = document.select(selector);
+        this.elements =  Jsoup.parse(document).select(selector);
         return this;
 //        return new Html(this.document,document.select(selector));
 //        return as("s")

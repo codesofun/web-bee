@@ -8,6 +8,8 @@ import org.bee.webBee.linker.Request;
 import org.bee.webBee.processor.Setting;
 import org.bee.webBee.processor.Task;
 
+import java.io.IOException;
+
 /**
  * webBee框架核心入口
  *
@@ -49,7 +51,11 @@ public class Bee implements Runnable,Task {
         requestProcessor();
 
         System.out.println("this is Bee.class implement Runnable's run function! --request:" + request.toString());
-        pageProcessor.process(pageProcessor(request));
+        try {
+            pageProcessor.process(pageProcessor(request));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
