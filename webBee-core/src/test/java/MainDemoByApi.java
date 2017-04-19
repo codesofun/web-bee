@@ -37,7 +37,7 @@ public class MainDemoByApi implements PageProcessor {
 
         System.out.println("api result:");
 //        System.out.println(api);
-         System.out.println(((JSONObject) JSON.parse(api)) );
+         System.out.println( JSON.parse(api) );
     }
 
     @Override
