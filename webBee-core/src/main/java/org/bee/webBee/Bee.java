@@ -66,7 +66,9 @@ public class Bee implements Runnable,Task {
                 Thread.sleep(1000);
                 pageProcessor.process(pageProcessor(request));
                 System.out.println(" ");
-            } catch (IOException | InterruptedException e) {
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
