@@ -1,5 +1,7 @@
 package org.bee.webBee;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.bee.webBee.download.HttpClientDownloader;
 import org.bee.webBee.html.Html;
 import org.bee.webBee.processor.PageProcessor;
@@ -52,18 +54,27 @@ public class Bee implements Runnable,Task {
 
     @Override
     public void run() {
-        if(COUNT==0){
-            requestProcessor();
-        }else{
-            requestNextProcessor();
+        requestProcessor();
+        while (request!=null  ){
+            if(COUNT>1){
+
+                requestNextProcessor();
+            }
+            System.out.println("this is Bee.class implement Runnable's run function! --request:" + request.toString());
+            try {
+                Thread.sleep(1000);
+                pageProcessor.process(pageProcessor(request));
+                System.out.println(" ");
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
-        System.out.println("this is Bee.class implement Runnable's run function! --request:" + request.toString());
-        try {
-            pageProcessor.process(pageProcessor(request));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    }
+
+    public Page pageProcessor(Request request){
+
+        return downLoader.download(request, this); //annotation: this 'this' to substitute one expression with Task's implement
     }
 
     /**
@@ -75,17 +86,15 @@ public class Bee implements Runnable,Task {
         COUNT++;
     }
 
-    public Page pageProcessor(Request request){
-
-        return downLoader.download(request, this); //annotation: this 'this' to substitute one expression with Task's implement
-    }
-
     /**
      * 获取下一个带抓取请求信息
      * @return
      */
     private void requestNextProcessor() {
-        System.out.println("---"+html.getApi());
+        this.request = new Request(setting.getUrl());
+        JSONObject json = (JSONObject) JSON.parse(html.getApi());
+        json.get(setting.getNextUrlKeyOnResult());
+        System.out.println("---"+ ((JSONObject) JSON.parse(html.getApi())).get(setting.getNextUrlKeyOnResult()));
     }
 
     @Override
