@@ -4,6 +4,8 @@
 
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.sun.media.jfxmedia.logging.Logger;
 import org.bee.webBee.Bee;
 import org.bee.webBee.linker.Page;
@@ -34,7 +36,8 @@ public class MainDemoByApi implements PageProcessor {
         String api = page.getApi();
 
         System.out.println("api result:");
-        System.out.println(api);
+//        System.out.println(api);
+         System.out.println(((JSONObject) JSON.parse(api)) );
     }
 
     @Override

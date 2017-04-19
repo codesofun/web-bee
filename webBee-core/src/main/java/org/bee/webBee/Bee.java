@@ -56,10 +56,11 @@ public class Bee implements Runnable,Task {
     public void run() {
         requestProcessor();
         while (request!=null  ){
-            if(COUNT>1){
+            if(COUNT>=1){
 
                 requestNextProcessor();
             }
+            COUNT++;
             System.out.println("this is Bee.class implement Runnable's run function! --request:" + request.toString());
             try {
                 Thread.sleep(1000);
@@ -83,7 +84,7 @@ public class Bee implements Runnable,Task {
      */
     public void requestProcessor(){
         this.request = new Request(setting.getUrl());
-        COUNT++;
+
     }
 
     /**
@@ -91,10 +92,10 @@ public class Bee implements Runnable,Task {
      * @return
      */
     private void requestNextProcessor() {
-        this.request = new Request(setting.getUrl());
-        JSONObject json = (JSONObject) JSON.parse(html.getApi());
-        json.get(setting.getNextUrlKeyOnResult());
-        System.out.println("---"+ ((JSONObject) JSON.parse(html.getApi())).get(setting.getNextUrlKeyOnResult()));
+        this.request = new Request(((JSONObject)((JSONObject) JSON.parse(html.getApi())).get("paging")).get("next").toString());
+//        JSONObject json = (JSONObject) JSON.parse(html.getApi());
+//        json.get(setting.getNextUrlKeyOnResult());
+        System.out.println("nextUrl--->"+ (((JSONObject)((JSONObject) JSON.parse(html.getApi())).get("paging")).get("next").toString()));
     }
 
     @Override
