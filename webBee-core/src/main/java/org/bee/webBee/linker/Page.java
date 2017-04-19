@@ -6,6 +6,7 @@ import org.apache.http.util.EntityUtils;
 import org.bee.webBee.html.Html;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.bee.webBee.processor.Setting;
 
 import java.io.IOException;
 import java.util.List;
@@ -32,7 +33,7 @@ public class Page {
 
 
     public void addWaitRequest(List<String> requests){
-        //TODO: synchronized  单线程?
+        //TODO: synchronized  同步锁
         for (String s : requests) {
             if (StringUtils.isBlank(s) || s.equals("#") || s.startsWith("javascript:")) {
                 break;
@@ -52,6 +53,7 @@ public class Page {
     }
 
     public  String getApi()   {
+
         return html.getApi();
     }
 }

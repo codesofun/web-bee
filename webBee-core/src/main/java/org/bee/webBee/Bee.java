@@ -1,6 +1,7 @@
 package org.bee.webBee;
 
 import org.bee.webBee.download.HttpClientDownloader;
+import org.bee.webBee.html.Html;
 import org.bee.webBee.processor.PageProcessor;
 import org.bee.webBee.download.DownLoader;
 import org.bee.webBee.linker.Page;
@@ -27,6 +28,9 @@ public class Bee implements Runnable,Task {
 
     private Setting setting;
 
+    private static  Integer COUNT = 0;
+
+    private Html html;
     /**
      * 实例化处理规则
      * @param pageProcessor 用来指向指针到具体规则实现类
@@ -48,7 +52,11 @@ public class Bee implements Runnable,Task {
 
     @Override
     public void run() {
-        requestProcessor();
+        if(COUNT==0){
+            requestProcessor();
+        }else{
+            requestNextProcessor();
+        }
 
         System.out.println("this is Bee.class implement Runnable's run function! --request:" + request.toString());
         try {
@@ -63,7 +71,8 @@ public class Bee implements Runnable,Task {
      * @return
      */
     public void requestProcessor(){
-        this.request = new Request(setting.getStartUrl());
+        this.request = new Request(setting.getUrl());
+        COUNT++;
     }
 
     public Page pageProcessor(Request request){
@@ -71,8 +80,23 @@ public class Bee implements Runnable,Task {
         return downLoader.download(request, this); //annotation: this 'this' to substitute one expression with Task's implement
     }
 
+    /**
+     * 获取下一个带抓取请求信息
+     * @return
+     */
+    private void requestNextProcessor() {
+        System.out.println("---"+html.getApi());
+    }
+
     @Override
     public Setting getSetting() {
         return setting;
     }
+
+    @Override
+    public void setHtml(Html html) {
+        this.html = html;
+    }
+
+
 }

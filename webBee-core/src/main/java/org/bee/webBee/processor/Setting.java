@@ -1,10 +1,10 @@
 package org.bee.webBee.processor;
 
 
-import org.apache.http.client.methods.HttpRequestBase;
+        import org.apache.http.client.methods.HttpRequestBase;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+        import java.util.LinkedHashMap;
+        import java.util.Map;
 
 /**
  * 爬虫的配置类
@@ -23,6 +23,8 @@ public class Setting {
     private String password;
 
     private String startUrl;
+
+    private String nextUrl;
 
     private String httpMethod;
 
@@ -124,7 +126,7 @@ public class Setting {
         return password;
     }
 
-    public String getStartUrl() {
+    public String getUrl() {
         return startUrl;
     }
 
@@ -156,6 +158,15 @@ public class Setting {
     public Setting setHttpMethod(String httpMethod) {
         this.httpMethod =  httpMethod;
         return this;
+    }
+
+    public Setting setNextUrlKeyOnResult(String nextUrlOnResult) {
+        this.nextUrl = nextUrlOnResult;
+        return this;
+    }
+
+    public String getNextUrlKeyOnResult(){
+        return this.nextUrl;
     }
 
 }

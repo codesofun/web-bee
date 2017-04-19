@@ -3,6 +3,7 @@ package org.bee.webBee.download;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.bee.webBee.HttpClient.HttpClientPool;
+import org.bee.webBee.html.Html;
 import org.bee.webBee.linker.Page;
 import org.bee.webBee.linker.Request;
 import org.bee.webBee.processor.Setting;
@@ -23,10 +24,9 @@ import java.util.logging.Logger;
 public class HttpClientDownloader implements DownLoader {
 
     private Logger logger = Logger.getLogger(String.valueOf(getClass()));
-
+    private Page page = new Page();
     @Override
     public Page download(Request request, Task task) {
-        Page page = new Page();
         Setting setting = task.getSetting();
         HttpRequestBase httpMethod =  null;
         httpMethod = HttpClientPool.getInstance().generateHttpMethod(request,task,httpMethod);
@@ -36,6 +36,7 @@ public class HttpClientDownloader implements DownLoader {
         try {
             CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpMethod);
             page.setHtml(closeableHttpResponse);
+            task.setHtml(page.getHtml()); //自传递api到Bee处理器
             closeableHttpResponse.close();
             //todo  do while策略处理异常
             return page;
@@ -43,5 +44,9 @@ public class HttpClientDownloader implements DownLoader {
             e.printStackTrace();
         }
         return page;
+    }
+
+    public Html getHtml(){
+        return page.getHtml();
     }
 }
