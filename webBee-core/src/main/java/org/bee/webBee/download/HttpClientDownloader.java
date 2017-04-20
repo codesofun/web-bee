@@ -1,6 +1,5 @@
 package org.bee.webBee.download;
 
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.bee.webBee.HttpClient.HttpClientPool;
 import org.bee.webBee.html.Html;
@@ -9,7 +8,6 @@ import org.bee.webBee.linker.Request;
 import org.bee.webBee.processor.Setting;
 import org.bee.webBee.processor.Task;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 
