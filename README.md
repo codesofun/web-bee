@@ -48,7 +48,7 @@
  
 ### 开源协议
 
-[MIT](LICENSE)
+- [MIT](LICENSE)
  
 
 
