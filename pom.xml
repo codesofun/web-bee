@@ -104,6 +104,7 @@
 
     <modules>
         <module>webBee-core</module>
+        <module>webBee-redis</module>
     </modules>
 
     <build>
