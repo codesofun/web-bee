@@ -14,6 +14,5 @@ public class RedisHashUtil {
     private static Jedis jedis = new Jedis("127.0.0.1");
     public static void set(String key, Map<String,String> hash){
         jedis.hmset(key,hash);
-
     }
 }
