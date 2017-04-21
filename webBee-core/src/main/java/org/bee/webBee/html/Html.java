@@ -5,11 +5,10 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.bee.webBee.utils.ElementUtil;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import webbee.redis.*;
 
 import java.io.IOException;
-import java.sql.ParameterMetaData;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -1,8 +1,5 @@
 package webbee.redis;
 
-
-import redis.clients.jedis.Jedis;
-
 import java.util.Map;
 
 /**
@@ -11,8 +8,9 @@ import java.util.Map;
  * @author sis.nonacosa
  */
 public class RedisHashUtil {
-    private static Jedis jedis = new Jedis("127.0.0.1");
+
     public static void set(String key, Map<String,String> hash){
-        jedis.hmset(key,hash);
+        Redis.create().hmset(key,hash);
+
     }
 }

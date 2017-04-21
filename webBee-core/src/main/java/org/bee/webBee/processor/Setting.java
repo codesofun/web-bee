@@ -1,15 +1,14 @@
 package org.bee.webBee.processor;
 
 
-        import org.apache.http.client.methods.HttpRequestBase;
-
-        import java.util.LinkedHashMap;
-        import java.util.Map;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * 爬虫的配置类
  * data 2017-03-23   01:55
  * E-mail   sis.nonacosa@gmail.com
+ *
  * @author sis.nonacosa
  */
 public class Setting {
@@ -28,44 +27,49 @@ public class Setting {
 
     private String httpMethod;
 
-    private Map<String,String> cookies = new LinkedHashMap<String, String>();//todo Collections.synchronizedMap?
+    private Map<String, String> cookies = new LinkedHashMap<String, String>();//todo Collections.synchronizedMap?
 
-    private Map<String,String> headers = new LinkedHashMap<String, String>();//todo Collections.synchronizedMap?
+    private Map<String, String> headers = new LinkedHashMap<String, String>();//todo Collections.synchronizedMap?
 
     /**
      * 个性化配置类入口返回配置对象,省去了new Setting()的步骤
+     *
      * @return
      */
     public static Setting create() {
         return new Setting();
     }
+
     /**
      * 设置一个作用域
+     *
      * @param domain
      * @return
      */
     public Setting setDomain(String domain) {
         this.domain = domain;
-        return this ;
+        return this;
     }
 
     /**
      * 为请求设置header
+     *
      * @param domain
      * @return
      */
-    public Setting addHeader(String key , String value) {
-        headers.put(key,value);
-        return this ;
+    public Setting addHeader(String key, String value) {
+        headers.put(key, value);
+        return this;
     }
 
-    public  Map<String, String> getHeader() {
+    public Map<String, String> getHeader() {
         return headers;
     }
 
 
     /**
      * 设置一个userAgent
+     *
      * @param userAgent
      * @return
      */
@@ -76,6 +80,7 @@ public class Setting {
 
     /**
      * 设置一个登录账号(若有需要)
+     *
      * @param userName
      * @return
      */
@@ -86,6 +91,7 @@ public class Setting {
 
     /**
      * 设置一个登录密码(若有需要)
+     *
      * @param password
      * @return
      */
@@ -96,6 +102,7 @@ public class Setting {
 
     /**
      * 获取已经设置的作用域
+     *
      * @return
      */
     public String getDomain() {
@@ -104,6 +111,7 @@ public class Setting {
 
     /**
      * 获取已经设置的userAgent
+     *
      * @return
      */
     public String getUserAgent() {
@@ -112,6 +120,7 @@ public class Setting {
 
     /**
      * 获取已经设置的账户
+     *
      * @return
      */
     public String getUserName() {
@@ -120,6 +129,7 @@ public class Setting {
 
     /**
      * 获取已经设置的密码
+     *
      * @return
      */
     public String getPassword() {
@@ -130,12 +140,12 @@ public class Setting {
         return startUrl;
     }
 
-    public Setting setStartUrl (String startUrl) {
+    public Setting setStartUrl(String startUrl) {
         this.startUrl = startUrl;
         return this;
     }
 
-    public Setting setApi (String startUrl) {
+    public Setting setApi(String startUrl) {
         this.startUrl = startUrl;
         return this;
     }
@@ -146,17 +156,17 @@ public class Setting {
     }
 
     public Setting setCookies(String key, String value) {
-        cookies.put(key,value);
+        cookies.put(key, value);
         return this;
     }
 
 
     public String getHttpMethod() {
-        return  httpMethod;
+        return httpMethod;
     }
 
     public Setting setHttpMethod(String httpMethod) {
-        this.httpMethod =  httpMethod;
+        this.httpMethod = httpMethod;
         return this;
     }
 
@@ -165,7 +175,7 @@ public class Setting {
         return this;
     }
 
-    public String getNextUrlKeyOnResult(){
+    public String getNextUrlKeyOnResult() {
         return this.nextUrl;
     }
 
