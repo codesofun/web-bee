@@ -58,7 +58,7 @@ public class Bee implements Runnable,Task {
     public void run() {
         requestProcessor();
         while (request!=null  ){
-            if(COUNT>=1){
+            if(COUNT>=1 && request!= null){
                 requestNextProcessor();
                 if(!checkResultData()) break;
             }
@@ -89,7 +89,8 @@ public class Bee implements Runnable,Task {
      * @return
      */
     public void requestProcessor(){
-        this.request = new Request(setting.getUrl());
+        if(setting.getNextUrlKeyOnResult() != null || COUNT<1) this.request = new Request(setting.getUrl());
+
 
     }
 
