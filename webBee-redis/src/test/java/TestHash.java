@@ -4,10 +4,9 @@
 
 import com.alibaba.fastjson.JSON;
 import redis.clients.jedis.Jedis;
-import webbee.redis.RedisHashUtil;
+import webbee.redis.RedisHash;
 
 import java.util.Map;
-import java.util.Set;
 
 /**
  * data 2017-04-22   00:27
@@ -25,13 +24,10 @@ public class TestHash {
                 "\"avatar_url_template\":\"https://pic4.zhimg.com/eb7442cd6913420418390112f2d1610f_{size}.jpg\"," +
                 "\"headline\":\"Catch me if you can.   公众号：WeBallsohard  \",\"is_following\":\"false\"}");
 
-        System.out.println(map.get("name"));
-        RedisHashUtil.set(map.get("name"),map);
 
-        Jedis jedis = new Jedis("127.0.0.1");
-        System.out.println("asdd"+jedis.sadd("asdd","asddd"));
-        Set set = jedis.keys("白*");
-//        jedis.hgetAll("bookname");
-        System.out.println("set : "+set);
+        Boolean status =   RedisHash.create().insert("name2",map);
+
+        System.out.println(status);
+
     }
 }
