@@ -1,6 +1,10 @@
 
 ## webBee 为乐趣而爬
+<div align=center>
 ![webBee](https://github.com/pkwenda/image/blob/master/webbee.png)
+</div>
+
+
 
 [![License](https://img.shields.io/badge/license-MIT-4EB1BA.svg?style=flat-square)](https://github.com/pkwenda/webBee/blob/master/LICENSE)                                    [![Build Status](https://travis-ci.org/pkwenda/webBee.svg?branch=master)](https://travis-ci.org/pkwenda/webBee)               [![Gitter](https://badges.gitter.im/pkwenda/web-bee.svg)](https://gitter.im/web_bee)    [![Github All Releases](https://img.shields.io/github/downloads/pkwenda/webBee/total.svg)](https://github.com/pkwenda/webBee)                             [![GitHub closed issues](https://img.shields.io/github/issues-closed/pkwenda/webBee.svg)](https://github.com/pkwenda/webBee/issues?q=is%3Aissue+is%3Aclosed)                  ![Version 0.0.1](https://img.shields.io/badge/version-0.0.1-red.svg?style=flat-square)
 
