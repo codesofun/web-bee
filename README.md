@@ -4,9 +4,9 @@
 <p align="center"><a href="https://vuejs.org" target="_blank"><img width="100"src="https://github.com/pkwenda/image/blob/master/webbee.png"></a></p>
 
 
-
+<p align="center">
 [![License](https://img.shields.io/badge/license-MIT-4EB1BA.svg?style=flat-square)](https://github.com/pkwenda/webBee/blob/master/LICENSE)                                    [![Build Status](https://travis-ci.org/pkwenda/webBee.svg?branch=master)](https://travis-ci.org/pkwenda/webBee)               [![Gitter](https://badges.gitter.im/pkwenda/web-bee.svg)](https://gitter.im/web_bee)    [![Github All Releases](https://img.shields.io/github/downloads/pkwenda/webBee/total.svg)](https://github.com/pkwenda/webBee)                             [![GitHub closed issues](https://img.shields.io/github/issues-closed/pkwenda/webBee.svg)](https://github.com/pkwenda/webBee/issues?q=is%3Aissue+is%3Aclosed)                  ![Version 0.0.1](https://img.shields.io/badge/version-0.0.1-red.svg?style=flat-square)
-
+<p>
  
 
 - `webBee` 基于`jdk8` 是一个持续成长的`垂直爬虫框架`项目 
