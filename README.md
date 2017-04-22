@@ -1,6 +1,6 @@
 
 
-<p align="center"><a href="https://github.com/pkwenda/webBee" target="_blank"><img width="300"src="https://github.com/pkwenda/image/blob/master/webbee.png"></a></p>
+<p align="center"><a href="https://github.com/pkwenda/webBee" target="_blank"><img width="300"src="https://dn-mhke0kuv.qbox.me/cfc1928e37ff0ac46463.png"></a></p>
  
  <p align="center">
   <a href="https://github.com/pkwenda/webBee/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-4EB1BA.svg?style=flat-square" alt="Build Status"></a>
