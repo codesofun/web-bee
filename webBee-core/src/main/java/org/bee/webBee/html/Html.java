@@ -6,7 +6,6 @@ import org.apache.http.util.EntityUtils;
 import org.bee.webBee.utils.ElementUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
-import webbee.redis.*;
 
 import java.io.IOException;
 import java.util.HashMap;
