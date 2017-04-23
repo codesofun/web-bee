@@ -10,6 +10,7 @@ import org.bee.webBee.linker.Page;
 import org.bee.webBee.linker.Request;
 import org.bee.webBee.processor.Setting;
 import org.bee.webBee.processor.Task;
+import org.bee.webBee.utils.JsonUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class Bee implements Runnable,Task {
             COUNT++;
             System.out.println("this is Bee.class implement Runnable's run function! --request:" + request.toString());
             try {
-                Thread.sleep(1000);
+                Thread.sleep(5000);
                 pageProcessor.process(pageProcessor(request));
                 System.out.println(" ");
             } catch (IOException e) {
@@ -100,8 +101,8 @@ public class Bee implements Runnable,Task {
      * todo paging next不可以写死
      */
     private void requestNextProcessor() {
-        this.request = new Request(((JSONObject)((JSONObject) JSON.parse(html.getApi())).get("paging")).get("next").toString());
-        System.out.println("nextUrl--->"+ (((JSONObject)((JSONObject) JSON.parse(html.getApi())).get("paging")).get(setting.getNextUrlKeyOnResult()).toString()));
+        this.request = new Request(JsonUtil.jsonCustomKey(html.getJsonApi(),setting.getNextUrlKeyOnResult()));
+        System.out.println("nextUrl--->"+ JsonUtil.jsonCustomKey(html.getJsonApi(),setting.getNextUrlKeyOnResult()));
     }
 
     /**
@@ -110,7 +111,9 @@ public class Bee implements Runnable,Task {
      * todo data不能限定死 是否可以在用户自己处理呢?
      */
     private boolean checkResultData() {
-        return  JSON.parseArray(((JSONObject) JSON.parse(html.getApi())).get("data").toString()).size()>0;
+
+        return  JSON.parseArray(html.getJsonApi().get("data").toString()).size()>0;
+
     }
 
     @Override

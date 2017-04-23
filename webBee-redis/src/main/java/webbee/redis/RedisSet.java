@@ -1,6 +1,7 @@
 package webbee.redis;
 
 import org.bee.webBee.DataStoreBase;
+import redis.clients.jedis.Jedis;
 
 import java.util.Map;
 
@@ -9,11 +10,11 @@ import java.util.Map;
  * E-mail   sis.nonacosa@gmail.com
  * @author sis.nonacosa
  */
-public class RedisHash implements DataStoreBase {
+public class RedisSet implements DataStoreBase {
+    private Jedis redis = Redis.create();
 
-
-    public boolean insert(String key, Map<String,String> value) {
-        return Redis.create().hmset(key, value).equals("OK");
+    public boolean insert(String key, String value) {
+         return redis.sadd(key, value).equals(1L);
     }
 
     @Override
@@ -27,8 +28,8 @@ public class RedisHash implements DataStoreBase {
     }
 
 
-    public static RedisHash create(){
-        return new RedisHash();
+    public static RedisSet create(){
+        return new RedisSet();
     }
 
 

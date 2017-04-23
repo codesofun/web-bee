@@ -1,6 +1,7 @@
 package org.bee.webBee.download;
 
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.util.EntityUtils;
 import org.bee.webBee.HttpClient.HttpClientPool;
 import org.bee.webBee.html.Html;
 import org.bee.webBee.linker.Page;
@@ -33,7 +34,9 @@ public class HttpClientDownloader implements DownLoader {
         CloseableHttpClient closeableHttpClient = httpClientBuilder.build();
         try {
             CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpMethod);
+            System.out.println(closeableHttpResponse.getStatusLine().getStatusCode());
             page.setHtml(closeableHttpResponse);
+            page.setRequest(request);
             task.setHtml(page.getHtml()); //自传递api到Bee处理器
             closeableHttpResponse.close();
             //todo  do while策略处理异常

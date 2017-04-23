@@ -1,9 +1,11 @@
 package org.bee.webBee.html;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.bee.webBee.utils.ElementUtil;
+import org.bee.webBee.utils.JsonUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
 
@@ -65,8 +67,12 @@ public class Html implements Selector,HtmlParser  {
         return new Html("");
     }
 
-    public String getApi(){
+    public String getStringApi(){
         return document;
+    }
+
+    public JSONObject getJsonApi(){
+        return (JSONObject) JSON.parse(document);
     }
 
     @Override

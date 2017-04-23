@@ -45,6 +45,8 @@ public class Page {
 
     public void setHtml(CloseableHttpResponse closeableHttpClient) throws IOException {
         this.html =  new Html(closeableHttpClient).getDocument();
+        this.api = this.html.getStringApi();
+        this.closeableHttpClient = closeableHttpClient;
 //        this.api = EntityUtils.toString(closeableHttpClient.getEntity());
     }
 
@@ -54,6 +56,14 @@ public class Page {
 
     public  String getApi()   {
 
-        return html.getApi();
+        return api;
+    }
+
+    public Request getRequest() {
+        return request;
+    }
+
+    public void setRequest(Request request) {
+        this.request = request;
     }
 }
