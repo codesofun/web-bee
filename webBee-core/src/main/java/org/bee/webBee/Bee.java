@@ -66,7 +66,7 @@ public class Bee implements Runnable,Task {
             COUNT++;
             System.out.println("this is Bee.class implement Runnable's run function! --request:" + request.toString());
             try {
-                Thread.sleep(5000);
+                Thread.sleep(setting.getThreadSleep());
                 pageProcessor.process(pageProcessor(request));
                 System.out.println(" ");
             } catch (IOException e) {

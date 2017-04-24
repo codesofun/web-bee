@@ -27,6 +27,8 @@ public class Setting {
 
     private String httpMethod;
 
+    private Integer  threadSleep;
+
     private Map<String, String> cookies = new LinkedHashMap<String, String>();//todo Collections.synchronizedMap?
 
     private Map<String, String> headers = new LinkedHashMap<String, String>();//todo Collections.synchronizedMap?
@@ -54,7 +56,7 @@ public class Setting {
     /**
      * 为请求设置header
      *
-     * @param domain
+     * @param
      * @return
      */
     public Setting addHeader(String key, String value) {
@@ -179,4 +181,13 @@ public class Setting {
         return this.nextUrl;
     }
 
+    public Setting setThreadSleep(int threadSleep) {
+        this.threadSleep = threadSleep;
+        return this;
+    }
+
+    public Integer getThreadSleep() {
+        if(threadSleep == null) return 3000;
+        return this.threadSleep  ;
+    }
 }

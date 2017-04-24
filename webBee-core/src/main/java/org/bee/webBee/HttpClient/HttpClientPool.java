@@ -73,8 +73,17 @@ public class HttpClientPool {
     public HttpRequestBase generateHttpMethod(Request request,Task task , HttpRequestBase httpRequestBase ){
         if(task.getSetting().getHttpMethod().equals("GET")) {
             httpRequestBase = new HttpGet(request.getUrl());
+            this.setHttpConfig(httpRequestBase);
             return  httpRequestBase;
         }
         return  httpRequestBase;
+    }
+
+    /**
+     * 设置响应超时时间
+     */
+    public void setHttpConfig(HttpRequestBase httpMethod){
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
+        httpMethod.setConfig(requestConfig);
     }
 }
