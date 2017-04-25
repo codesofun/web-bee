@@ -56,7 +56,7 @@ public class MainDemoByApi implements PageProcessor {
         setting = setting.addHeader("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36");
         setting = setting.addHeader("Cookie","aliyungf_tc=AQAAAOeQ+1+bMQcAuTj1eyWWHEWGOFd5; acw_tc=AQAAALOd4Xn1TwcAuTj1e01cA+S2FFI9; q_c1=6061d5105e7144e9986c696caa21bb08|1492701579000|1492701579000; r_cap_id=\"NjBhNDM0ZmQzYTEyNGMxNWIxNDA1MjAwYmUwMDQzODY=|1492701579|48d9e12537fe7f83ad3bcaf9ed9b50c7fc995db2\"; cap_id=\"MDAxNWRlZjA5ZTRmNGNiOWE4OWZjMjBhYmRhZTUwMzg=|1492701579|49943d3f3bd8f8d52c70264684674bb22645946d\"; _xsrf=880dce32ffb2deb6467caadd8299d352; d_c0=\"AHBCTk4QowuPTs0xoWv4_K0tdVn73ZvN2EI=|1492701580\"; _zap=9632bb9d-c70d-40c1-9f1b-3bd23a1116ca; l_n_c=1; __utma=51854390.1545696888.1492701581.1492701581.1492701581.1; __utmb=51854390.0.10.1492701581; __utmc=51854390; __utmz=51854390.1492701581.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utmv=51854390.100--|2=registration_date=20170416=1^3=entry_date=20170416=1; s-q=%E7%8E%8B%E8%AF%BA%E8%AF%BA; s-i=3; sid=0j69lkf8; s-t=autocomplete; z_c0=Mi4wQUJEQ0JOcEVuUXNBY0VKT1RoQ2pDeGNBQUFCaEFsVk43VjhnV1FCLUVaUDM1NWhXemRMalIwWXNhdE4wZi1tanJn|1492703100|d381cbe3d541399a2b1518a256b9d5a5935f9087");
         setting = setting.setHttpMethod("GET");
-        setting = setting.setNextUrlKeyOnResult("next");
+        setting = setting.setNextUrlKeyOnResult("paging->next");
 //        setting = setting.setNextUrlOnCustom("offset=?&&limit=?");
         return setting;
     }
