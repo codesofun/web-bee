@@ -110,16 +110,7 @@ public class Bee implements Runnable,Task {
 //        System.out.println("nextUrl--->"+ JsonUtil.jsonCustomKey(html.getJsonApi(),setting.getNextUrlKeyOnResult()));
     }
 
-    /**
-     * 检查api返回数据是否符合要求
-     * @return
-     * todo data不能限定死 是否可以在用户自己处理呢?
-     */
-    private boolean checkResultData() {
 
-        return  JSON.parseArray(html.getJsonApi().get("data").toString()).size()>0;
-
-    }
 
     @Override
     public Setting getSetting() {
