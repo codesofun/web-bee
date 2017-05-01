@@ -12,6 +12,6 @@ public interface HtmlParser {
      * @param
      * @return
      */
-    HtmlParser getDocument();
+    String getDocument();
 
 }

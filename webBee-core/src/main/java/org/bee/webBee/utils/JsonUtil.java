@@ -10,16 +10,17 @@ import com.alibaba.fastjson.JSONObject;
 public class JsonUtil {
 
     public static String jsonCustomKey (JSONObject json, String s) {
-        JSONObject temp = json;
-        String[] customArr = s.split("->");
-        for(int i=0;i<customArr.length;i++){
-            if(i == customArr.length-1){
-                return temp.get(customArr[i]).toString();
-            }else {
-                temp = (JSONObject) temp.get(customArr[i]);
+        if(json != null && s != null){
+            JSONObject temp = json;
+            String[] customArr = s.split("->");
+            for(int i=0;i<customArr.length;i++){
+                if(i == customArr.length-1){
+                    return temp.get(customArr[i]).toString();
+                }else {
+                    temp = (JSONObject) temp.get(customArr[i]);
+                }
             }
         }
-
         return null;
     }
 }

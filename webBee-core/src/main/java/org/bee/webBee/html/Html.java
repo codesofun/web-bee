@@ -53,8 +53,8 @@ public class Html implements Selector,HtmlParser  {
         this.elementsMap = elementsMap;
     }
 
-    @Override
-    public Html getDocument()   {
+
+    public Html getHtml()   {
         try {
 //            Document document = Jsoup.parse(EntityUtils.toString(httpResponse.getEntity()));
              String html = EntityUtils.toString(this.closeableHttpClient.getEntity());
@@ -72,7 +72,14 @@ public class Html implements Selector,HtmlParser  {
     }
 
     public JSONObject getJsonApi(){
-        return (JSONObject) JSON.parse(document);
+        JSONObject json = null;
+        try {
+            json = (JSONObject) JSON.parse(document);
+        }catch (Exception e){
+            System.out.println("Json 转换格式错误!");
+//            System.out.println("异常栈:"+e);
+        }
+        return json;
     }
 
     @Override
@@ -97,6 +104,8 @@ public class Html implements Selector,HtmlParser  {
     }
 
 
-
-
+    @Override
+    public String getDocument() {
+        return document;
+    }
 }

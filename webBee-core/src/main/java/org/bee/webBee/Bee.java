@@ -60,8 +60,8 @@ public class Bee implements Runnable,Task {
         requestProcessor();
         while (request!=null  ){
             if(COUNT>=1 && request!= null){
-                requestNextProcessor();
-                if(!checkResultData()) break;
+                if(!requestNextProcessor()) break;
+//                if(!checkResultData()) break;
             }
             COUNT++;
             System.out.println("this is Bee.class implement Runnable's run function! --request:" + request.toString());
@@ -100,9 +100,14 @@ public class Bee implements Runnable,Task {
      * @return
      * todo paging next不可以写死
      */
-    private void requestNextProcessor() {
-        this.request = new Request(JsonUtil.jsonCustomKey(html.getJsonApi(),setting.getNextUrlKeyOnResult()));
-        System.out.println("nextUrl--->"+ JsonUtil.jsonCustomKey(html.getJsonApi(),setting.getNextUrlKeyOnResult()));
+    private boolean requestNextProcessor() {
+        String url = JsonUtil.jsonCustomKey(html.getJsonApi(),setting.getNextUrlKeyOnResult());
+        if(url != null){
+            this.request = new Request(url);
+            return true;
+        }
+        return false;
+//        System.out.println("nextUrl--->"+ JsonUtil.jsonCustomKey(html.getJsonApi(),setting.getNextUrlKeyOnResult()));
     }
 
     /**
