@@ -13,5 +13,12 @@ public class UrlUtils {
      * @param refer url地址来自哪个页面
      * @return url绝对地址
      */
+    public static  String canonicalizeUrl(String url,String refer){
+        if(url.startsWith("http")||url.startsWith("https")){
+            return url;
+        }
+        return refer+url;
+
+    }
 
 }

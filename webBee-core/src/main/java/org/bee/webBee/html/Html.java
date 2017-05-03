@@ -7,9 +7,11 @@ import org.apache.http.util.EntityUtils;
 import org.bee.webBee.utils.ElementUtil;
 import org.bee.webBee.utils.JsonUtil;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -95,6 +97,21 @@ public class Html implements Selector,HtmlParser  {
         return new Html(this.document,this.elements,this.elementsMap);
     }
 
+    public List<String> getLinks(String selector){
+        this.elements = Jsoup.parse(document).select(selector).select("a");
+        List<String> list = new ArrayList<String>();
+        for(Element element:elements){
+            list.add(element.attr("href"));
+        }
+        return list;
+    }
+
+    public Map<String,List<String>> getResult(){
+        return elementsMap;
+    }
+
+
+
     public String toJSONString(){
         return JSON.toJSONString(this.elementsMap);
     }
@@ -107,5 +124,17 @@ public class Html implements Selector,HtmlParser  {
     @Override
     public String getDocument() {
         return document;
+    }
+
+    @Override
+    public String getValue() {
+        if(elements==null||elements.size()<1){
+            return null;
+        }
+        return elements.get(0).text();
+    }
+
+    public Elements getElements(){
+        return elements;
     }
 }

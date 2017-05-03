@@ -14,4 +14,10 @@ public interface HtmlParser {
      */
     String getDocument();
 
+    /**
+     * 获取元素值
+     * @return
+     */
+    String getValue();
+
 }

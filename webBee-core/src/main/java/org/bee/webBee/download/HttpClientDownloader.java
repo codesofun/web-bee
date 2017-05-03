@@ -37,6 +37,8 @@ public class HttpClientDownloader implements DownLoader {
             System.out.println(closeableHttpResponse.getStatusLine().getStatusCode());
             page.setHtml(closeableHttpResponse);
             page.setRequest(request);
+            page.setUrl(request.getUrl());
+            page.setStatusCode(closeableHttpResponse.getStatusLine().getStatusCode());
             task.setHtml(page.getHtml()); //自传递api到Bee处理器
             closeableHttpResponse.close();
             //todo  do while策略处理异常

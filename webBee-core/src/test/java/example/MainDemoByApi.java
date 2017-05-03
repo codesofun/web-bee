@@ -1,12 +1,10 @@
-/**
+package example; /**
  * Created by zhuang on 2017/3/23.
  */
 
 
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.sun.media.jfxmedia.logging.Logger;
 import org.bee.webBee.Bee;
 import org.bee.webBee.linker.Page;
 import org.bee.webBee.processor.PageProcessor;
@@ -40,7 +38,7 @@ public class MainDemoByApi implements PageProcessor {
 
     @Override
     public Setting getSetting() {
-        System.out.println("This is MainDemoByUrl's setting function ...");
+        System.out.println("This is example.MainDemoByUrl's setting function ...");
         setting = Setting.create().setStartUrl("https://www.zhihu.com/api/v4/members/koubixu/followers?include=data%5B*%5D.answer_count%2Carticles_count%2Cgender%2Cfollower_count%2Cis_followed%2Cis_following%2Cbadge%5B%3F(type%3Dbest_answerer)%5D.topics&offset=0&limit=20");
 //        setting = Setting.create().setStartUrl("https://www.zhihu.com/api/v4/members/wangnuonuo/followers?include=data%5B*%5D.answer_count%2Carticles_count%2Cgender%2Cfollower_count%2Cis_followed%2Cis_following%2Cbadge%5B%3F(type%3Dbest_answerer)%5D.topics&offset=0&limit=20");
         setting = setting.setCookies("z_c0","Mi4wQUFEQUZwSzEzZ2tBY01ERVdCM0lDUmNBQUFCaEFsVk5WQjcyV0FEb0RnYlI3QnFQSWtzSWMzTjRHQVN0YlNlTW1R");

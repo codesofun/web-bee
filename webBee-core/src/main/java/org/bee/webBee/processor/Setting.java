@@ -1,8 +1,14 @@
 package org.bee.webBee.processor;
 
 
+import org.bee.webBee.handler.Handler;
+import org.bee.webBee.linker.Request;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Queue;
+import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * 爬虫的配置类
@@ -28,6 +34,17 @@ public class Setting {
     private String httpMethod;
 
     private Integer  threadSleep;
+
+    private Integer threadNum;
+
+    private Handler handler;
+
+
+
+    private final int DEFAULT_THREAD_NUM = 5;
+
+
+
 
     private Map<String, String> cookies = new LinkedHashMap<String, String>();//todo Collections.synchronizedMap?
 
@@ -55,8 +72,8 @@ public class Setting {
 
     /**
      * 为请求设置header
-     *
-     * @param
+     * @param key
+     * @param value
      * @return
      */
     public Setting addHeader(String key, String value) {
@@ -189,5 +206,24 @@ public class Setting {
     public Integer getThreadSleep() {
         if(threadSleep == null) return 3000;
         return this.threadSleep  ;
+    }
+
+    public Integer getThreadNum() {
+        if(threadNum==null||threadNum<1){
+            return DEFAULT_THREAD_NUM;
+        }
+        return threadNum;
+    }
+
+    public void setThreadNum(Integer threadNum) {
+        this.threadNum = threadNum;
+    }
+
+    public Handler getHandler() {
+        return handler;
+    }
+
+    public void setHandler(Handler handler) {
+        this.handler = handler;
     }
 }
