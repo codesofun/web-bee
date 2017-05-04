@@ -1,13 +1,14 @@
 
 
-<p align="center"><a href="https://github.com/pkwenda/webBee" target="_blank"><img width="300"src="https://dn-mhke0kuv.qbox.me/cfc1928e37ff0ac46463.png"></a></p>
+<p align="center"><a href="https://github.com/java-webbee/webBee" target="_blank"><img width="300"src="https://dn-mhke0kuv.qbox.me/cfc1928e37ff0ac46463.png"></a></p>
  
  <p align="center">
-  <a href="https://github.com/pkwenda/webBee/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-4EB1BA.svg?style=flat-square" alt="Build Status"></a>
-  <a href="https://travis-ci.org/java-webbee/webBee"><img src="https://travis-ci.org/pkwenda/webBee.svg?branch=master" alt="Coverage Status"></a>
-  <a href="https://gitter.im/web_bee"><img src="https://badges.gitter.im/pkwenda/web-bee.svg" alt="Downloads"></a>
-  <a href="https://github.com/pkwenda/webBee"><img src="https://img.shields.io/github/downloads/pkwenda/webBee/total.svg" alt="Version"></a>
-  <a href="https://github.com/pkwenda/webBee/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed/pkwenda/webBee.svg" alt="License"></a>
+  <a href="https://github.com/
+  /webBee/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-4EB1BA.svg?style=flat-square" alt="Build Status"></a>
+  <a href="https://travis-ci.org/java-webbee/webBee"><img src="https://travis-ci.org/java-webbee/webBee.svg?branch=master" alt="Coverage Status"></a>
+  <a href="https://gitter.im/web_bee"><img src="https://badges.gitter.im/java-webbee/web-bee.svg" alt="Downloads"></a>
+  <a href="https://github.com/java-webbee/webBee"><img src="https://img.shields.io/github/downloads/java-webbee/webBee/total.svg" alt="Version"></a>
+  <a href="https://github.com/java-webbee/webBee/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed/java-webbee/webBee.svg" alt="License"></a>
   <a href="#"><img src="https://img.shields.io/badge/version-0.0.1-red.svg?style=flat-square" alt="Sauce Test Status"></a>
 </p>
 
