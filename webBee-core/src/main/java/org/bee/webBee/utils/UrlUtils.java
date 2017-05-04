@@ -17,6 +17,12 @@ public class UrlUtils {
         if(url.startsWith("http")||url.startsWith("https")){
             return url;
         }
+        if(url.startsWith("/")){
+            int index = refer.indexOf("//");
+            String sub = refer.substring(index + 2);
+            String res = refer.substring(0, index + 2)+sub.substring(0, sub.indexOf("/"));
+            return res+url;
+        }
         return refer+url;
 
     }

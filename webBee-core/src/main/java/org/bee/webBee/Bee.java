@@ -107,7 +107,7 @@ public class Bee implements Runnable, Task {
 
     public void run2() {
         initThreadPool();
-        while (!Thread.currentThread().isInterrupted() && threadStatus.get() == 0) {
+        while (!Thread.currentThread().isInterrupted() ) {
             Request request = waitRequests.poll();
             if (request == null) {
                 if (((ThreadPoolExecutor) executorService).getActiveCount() == 0) {
@@ -130,8 +130,6 @@ public class Bee implements Runnable, Task {
                 }
             });
         }
-        threadStatus.set(1);
-
     }
 
     private void handleResult(Page page) {

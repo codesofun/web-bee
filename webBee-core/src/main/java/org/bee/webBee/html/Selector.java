@@ -16,7 +16,16 @@ public interface Selector {
      * @param selector
      * @return
      */
-    Selector $(String selector); 
+    Selector $(String selector);
+
+    /**
+     * 正则选择器
+     * @param regex
+     * @return
+     */
+    Selector regex(String regex);
+
+
 
 
 

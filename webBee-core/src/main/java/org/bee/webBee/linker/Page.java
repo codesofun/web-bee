@@ -21,8 +21,6 @@ public class Page {
 
     private Request request;
 
-
-
     private List<Request> waitRequests = new ArrayList<>();
 
     private BeeResults beeResults= new BeeResults();
@@ -34,6 +32,8 @@ public class Page {
     private CloseableHttpResponse closeableHttpClient;
 
     private String api;
+
+    private String domain;
 
 
 
@@ -112,7 +112,13 @@ public class Page {
     }
 
 
+    public String getDomain() {
+        return domain;
+    }
 
+    public void setDomain(String domain) {
+        this.domain = domain;
+    }
 
     public Request getRequest() {
         return request;

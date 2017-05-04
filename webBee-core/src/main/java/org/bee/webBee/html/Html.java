@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * data 2017-03-26   01:07
@@ -92,6 +93,14 @@ public class Html implements Selector,HtmlParser  {
 //        return as("s")
     }
 
+    @Override
+    public Selector regex(String regex) {
+       return null;
+
+    }
+
+
+
     public Html as (String key){
         this.elementsMap.put(key, ElementUtil.elementsToList(this.elements));
         return new Html(this.document,this.elements,this.elementsMap);
@@ -100,6 +109,19 @@ public class Html implements Selector,HtmlParser  {
     public List<String> getLinks(String selector){
         this.elements = Jsoup.parse(document).select(selector).select("a");
         List<String> list = new ArrayList<String>();
+        for(Element element:elements){
+            list.add(element.attr("href"));
+        }
+        return list;
+    }
+
+    public List<String> getLinks(){
+        if(elements==null){
+            elements = Jsoup.parse(document).select("a");
+        }else{
+            elements = elements.select("a");
+        }
+        List<String> list = new ArrayList<>();
         for(Element element:elements){
             list.add(element.attr("href"));
         }

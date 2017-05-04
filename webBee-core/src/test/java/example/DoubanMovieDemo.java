@@ -20,21 +20,15 @@ public class DoubanMovieDemo implements PageProcessor {
     @Override
     public void process(Page page) throws IOException {
 //        page.addWaitRequest();
-        List<String> subject= page.getHtml().getLinks("#content");
-        List<String> tabs = page.getHtml().getLinks(".article");
+        List<String> subject= page.getHtml().$(".article table.tagCol").getLinks();
         page.addWaitRequest(subject);
-        page.addWaitRequest(tabs);
 
-        String name = page.getHtml().$("#content .span[property=v:itemreviewed]").getValue();
-        String author = page.getHtml().$(".article #info .attrs").getValue();
-        String mark = page.getHtml().$("#interest_sectl strong.rating_num").getValue();
+        String name = page.getHtml().$(".article .item .pl2 a").getValue();
+        String mark = page.getHtml().$(".article .item span.rating_nums").getValue();
+        List<String> next = page.getHtml().$(".paginator").getLinks();
+        page.addWaitRequest(next);
         page.setResult("name",name);
-        page.setResult("author",author);
         page.setResult("mark",mark);
-
-
-
-
     }
 
     @Override
@@ -42,8 +36,9 @@ public class DoubanMovieDemo implements PageProcessor {
         setting=Setting.create().setStartUrl("https://movie.douban.com/tag");
         setting.setDomain("https://movie.douban.com");
         setting.setHttpMethod("GET");
-        setting.setCookies("bid","rZFPxvXrqwY");
-        setting.setThreadNum(2);
+        setting.setCookies("bid","PI0P2w4aMDI");
+        setting.setThreadSleep(3000);
+        setting.setThreadNum(1);
         return setting;
     }
 
