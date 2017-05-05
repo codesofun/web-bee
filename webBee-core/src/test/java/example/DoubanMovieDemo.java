@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * 豆瓣电影爬虫demo
  * @author wangtonghe
  * @date 2017/5/3 08:31
  */

@@ -1,9 +1,6 @@
 package org.bee.webBee;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import org.bee.webBee.download.HttpClientDownloader;
-import org.bee.webBee.handler.BeeResults;
 import org.bee.webBee.handler.ConsoleHandler;
 import org.bee.webBee.handler.Handler;
 import org.bee.webBee.html.Html;
@@ -14,19 +11,14 @@ import org.bee.webBee.linker.Request;
 import org.bee.webBee.processor.Setting;
 import org.bee.webBee.processor.Task;
 import org.bee.webBee.utils.JsonUtil;
-import org.bee.webBee.utils.UrlUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 /**
  * webBee框架核心入口
@@ -117,7 +109,7 @@ public class Bee implements Runnable, Task {
             }
             executorService.execute(() -> {
                 Page page = pageProcessor(request);
-                if (page.getStatusCode() == RequestConstant.STATUS_CODE_200) {
+                if (page.getStatusCode() == BeeConstant.STATUS_CODE_200) {
                     try {
                         pageProcessor.process(page);  //处理页面
                         handleResult(page);    //处理结果

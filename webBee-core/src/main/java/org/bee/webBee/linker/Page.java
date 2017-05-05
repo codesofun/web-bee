@@ -1,7 +1,7 @@
 package org.bee.webBee.linker;
 
 
-import org.bee.webBee.handler.BeeResults;
+import org.bee.webBee.BeeResult;
 import org.bee.webBee.html.Html;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -9,7 +9,6 @@ import org.bee.webBee.utils.UrlUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -23,7 +22,7 @@ public class Page {
 
     private List<Request> waitRequests = new ArrayList<>();
 
-    private BeeResults beeResults= new BeeResults();
+    private BeeResult beeResult= new BeeResult();
 
     private Result result;
 
@@ -79,11 +78,11 @@ public class Page {
     }
 
     public void setResult(String key,String value){
-        beeResults.put(key,value);
+        beeResult.put(key,value);
     }
 
-    public BeeResults getBeeResults(){
-        return beeResults;
+    public BeeResult getBeeResults(){
+        return beeResult;
     }
 
     public int getStatusCode() {

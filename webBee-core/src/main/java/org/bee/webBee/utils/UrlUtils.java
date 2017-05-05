@@ -8,7 +8,7 @@ package org.bee.webBee.utils;
  */
 public class UrlUtils {
     /**
-     * 将url想对地址转化为绝对地址
+     * 进行url地址转化
      * @param url url地址
      * @param refer url地址来自哪个页面
      * @return url绝对地址
