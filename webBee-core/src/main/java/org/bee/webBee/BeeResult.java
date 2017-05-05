@@ -9,20 +9,20 @@ import java.util.Map;
  */
 public class BeeResult {
 
-    private Map<String, String> result = new HashMap<>();
+    private Map<String, Object> result = new HashMap<>();
 
-    public void put(String key, String value) {
+    public <T>void put(String key, T value) {
         if (value != null) {
             result.put(key, value);
         }
     }
 
-    public String get(String key) {
-        return result.get(key);
+    public <T>T get(String key) {
+        return (T)result.get(key);
     }
 
 
-    public Map<String,String> getResult(){
+    public Map<String,Object> getResult(){
         return result;
     }
 

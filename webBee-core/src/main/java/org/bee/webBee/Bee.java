@@ -1,24 +1,26 @@
 package org.bee.webBee;
 
+import org.bee.webBee.download.DownLoader;
 import org.bee.webBee.download.HttpClientDownloader;
 import org.bee.webBee.handler.ConsoleHandler;
 import org.bee.webBee.handler.Handler;
+import org.bee.webBee.handler.JsonFileHandler;
 import org.bee.webBee.html.Html;
-import org.bee.webBee.processor.PageProcessor;
-import org.bee.webBee.download.DownLoader;
 import org.bee.webBee.linker.Page;
 import org.bee.webBee.linker.Request;
+import org.bee.webBee.processor.PageProcessor;
 import org.bee.webBee.processor.Setting;
 import org.bee.webBee.processor.Task;
 import org.bee.webBee.utils.JsonUtil;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * webBee框架核心入口
@@ -34,12 +36,9 @@ public class Bee implements Runnable, Task {
 
     private DownLoader downLoader = new HttpClientDownloader();
 
-    ExecutorService executorService;
+    private ExecutorService executorService;
 
-    private Handler handler;
-
-    protected AtomicInteger threadStatus = new AtomicInteger(0);
-
+    private List<Handler> handlers = new ArrayList<>();
 
     private Request request;
 
@@ -122,18 +121,30 @@ public class Bee implements Runnable, Task {
                 }
             });
         }
+        close();
+    }
+
+    private void close(){
+        executorService.shutdown();
+        waitRequests.clear();
+        handleResultEnd();
+
     }
 
     private void handleResult(Page page) {
         //默认使用Console处理结果，即打印到控制台
-        if (handler == null) {
-            handler = new ConsoleHandler();
+        if (handlers == null) {
+            handlers.add(new ConsoleHandler());
         }
-        handler.handle(page.getBeeResults());
+        handlers.forEach((e)->e.handle(page.getBeeResults()));
         if(page.getWaitRequests()!=null&&page.getWaitRequests().size()>0){
             waitRequests.addAll(page.getWaitRequests());  //添加待处理url
         }
 
+    }
+
+    private void handleResultEnd(){
+        handlers.forEach(Handler::destory);
     }
 
     private void initThreadPool() {
@@ -183,12 +194,9 @@ public class Bee implements Runnable, Task {
         this.html = html;
     }
 
-    public Handler getHandler() {
-        return handler;
-    }
 
     public Bee setHandler(Handler handler) {
-        this.handler = handler;
+        handlers.add(handler);
         return this;
     }
 }

@@ -9,7 +9,9 @@ import org.bee.webBee.utils.UrlUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * data 2017-03-20   23:10
@@ -20,7 +22,7 @@ public class Page {
 
     private Request request;
 
-    private List<Request> waitRequests = new ArrayList<>();
+    private Set<Request> waitRequests = new HashSet<>();
 
     private BeeResult beeResult= new BeeResult();
 
@@ -77,7 +79,7 @@ public class Page {
         return api;
     }
 
-    public void setResult(String key,String value){
+    public void setResult(String key,Object value){
         beeResult.put(key,value);
     }
 
@@ -93,11 +95,11 @@ public class Page {
         this.statusCode = statusCode;
     }
 
-    public List<Request> getWaitRequests() {
+    public Set<Request> getWaitRequests() {
         return waitRequests;
     }
 
-    public void setWaitRequests(List<Request> waitRequests) {
+    public void setWaitRequests(Set<Request> waitRequests) {
 
         this.waitRequests = waitRequests;
     }

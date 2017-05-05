@@ -2,9 +2,11 @@ package processor;
 
 import org.bee.webBee.BeeConstant;
 import org.junit.Test;
+import org.relaxng.datatype.DatatypeException;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.Date;
 
 /**
  * @author wangtonghe
@@ -29,5 +31,10 @@ public class TestFile {
         writer.close();
 
 
+    }
+
+    @Test
+    public void testDate(){
+        System.out.println(new Date().getTime());
     }
 }

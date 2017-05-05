@@ -12,9 +12,14 @@ public class ConsoleHandler implements Handler {
     @Override
     public void handle(BeeResult beeResult) {
 
-       for(Map.Entry<String,String> entry:beeResult.getResult().entrySet() ){
+       for(Map.Entry<String,Object> entry:beeResult.getResult().entrySet() ){
            System.out.println(entry.getKey()+":\t"+entry.getValue());
        }
+
+    }
+
+    @Override
+    public void destory() {
 
     }
 }

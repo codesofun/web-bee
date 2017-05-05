@@ -1,5 +1,7 @@
 package org.bee.webBee.html;
 
+import java.util.List;
+
 /**
  * selector html Document list with css selector.
  * <p>
@@ -25,8 +27,31 @@ public interface Selector {
      */
     Selector regex(String regex);
 
+    /**
+     * 获取指定索引位置元素
+     * @param index
+     * @return
+     */
+    Selector get(int index);
+
+    /**
+     * 获取元素值
+     * @return 元素值
+     */
+    String getValue();
 
 
+    /**
+     * 获取选择元素所有值
+     * @return 元素列表值
+     */
+    List<String> getAll();
 
+
+    /**
+     * 获取标签
+     * @return
+     */
+    List<String> getLinks();
 
 }
