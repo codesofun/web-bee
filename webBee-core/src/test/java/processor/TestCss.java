@@ -38,8 +38,6 @@ public class TestCss {
         System.out.println(before.nextSibling());
 
 
-        Elements actor = element.select(".actor .attrs span:not(:hidden))");
-        System.out.println(actor);
 
 
 

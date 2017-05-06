@@ -3,6 +3,7 @@ package org.bee.webBee.html;
 import java.util.List;
 
 /**
+ * TODO 待重构选择器类结构
  * selector html Document list with css selector.
  * <p>
  * data 2017-03-21   01:52
@@ -22,6 +23,7 @@ public interface Selector {
 
     /**
      * 正则选择器
+     *
      * @param regex
      * @return
      */
@@ -29,6 +31,7 @@ public interface Selector {
 
     /**
      * 获取指定索引位置元素
+     *
      * @param index
      * @return
      */
@@ -36,6 +39,7 @@ public interface Selector {
 
     /**
      * 获取元素值
+     *
      * @return 元素值
      */
     String getValue();
@@ -43,6 +47,7 @@ public interface Selector {
 
     /**
      * 获取选择元素所有值
+     *
      * @return 元素列表值
      */
     List<String> getAll();
@@ -50,12 +55,13 @@ public interface Selector {
 
     /**
      * 获取标签
+     *
      * @return
      */
     List<String> getLinks();
 
-    public String nextNodeText();
+    String nextNodeText();
 
-    public String prevNodeText();
+    String prevNodeText();
 
 }
