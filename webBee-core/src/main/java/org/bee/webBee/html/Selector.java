@@ -54,4 +54,8 @@ public interface Selector {
      */
     List<String> getLinks();
 
+    public String nextNodeText();
+
+    public String prevNodeText();
+
 }

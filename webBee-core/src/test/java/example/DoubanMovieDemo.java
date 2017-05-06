@@ -3,6 +3,7 @@ package example;
 import org.bee.webBee.Bee;
 import org.bee.webBee.handler.ConsoleHandler;
 import org.bee.webBee.handler.JsonFileHandler;
+import org.bee.webBee.html.Html;
 import org.bee.webBee.linker.Page;
 import org.bee.webBee.processor.PageProcessor;
 import org.bee.webBee.processor.Setting;
@@ -28,26 +29,31 @@ public class DoubanMovieDemo implements PageProcessor {
         List<String> subjects = page.getHtml().$("#wrapper #content .article .item .pl2").getLinks();
         page.addWaitRequest(subjects);
 
-//        List<String> next = page.getHtml().$(".paginator").getLinks();
-//        page.addWaitRequest(next);
+        List<String> next = page.getHtml().$(".paginator").getLinks();
+        page.addWaitRequest(next);
 
-        String name = page.getHtml().$("#content h1 span[property=v:itemreviewed]").get(0).getValue();
+        String name = page.getHtml().$("#content h1 span[property=v:itemreviewed]").getValue();
 
-        String author = page.getHtml().$("#info span").get(0).$(".attrs a").getValue();
-        List<String> actor_list = page.getHtml().$("#info span.actor .attrs a").getAll();
+        Html info = page.getHtml().$("#info");
+
+        String author =info.get(0).$("span .attrs a").getValue();
+        List<String> actor_list = info.$("span.actor .attrs a").getAll();
         actor_list=actor_list.size()==0?null:actor_list;
 
-        List<String> category_list = page.getHtml().$("#info span[property=v:genre]").getAll();
+        List<String> category_list = info.$("span[property=v:genre]").getAll();
         category_list =category_list.size()==0?null:category_list;
 
-//        String country = page.getHtml().$("#info>span").get(6).getValue();
-        String date = page.getHtml().$("#info span[property=v:initialReleaseDate]").get(0).getValue();
+        String country = info.$("span.pl:contains(制片国家/地区)").get(0).nextNodeText();
+        String lang = info.$("span.pl:contains(语言)").get(0).nextNodeText();
+        String date = info.$("span[property=v:initialReleaseDate]").getValue();
 
-        String mark = page.getHtml().$("#interest_sectl .rating_num").get(0).getValue();
+        String mark = page.getHtml().$("#interest_sectl .rating_num").getValue();
 
         page.setResult("name",name);
         page.setResult("author",author);
         page.setResult("actor",actor_list);
+        page.setResult("lang",lang);
+        page.setResult("country",country);
         page.setResult("category",category_list);
         page.setResult("date",date);
         page.setResult("mark",mark);
@@ -61,14 +67,14 @@ public class DoubanMovieDemo implements PageProcessor {
         setting.setDomain("https://movie.douban.com");
         setting.setHttpMethod("GET");
         setting.setCookies("bid","PI0P2w4aMDI");
-        setting.setThreadSleep(1000);
-        setting.setThreadNum(2);
+        setting.setThreadSleep(2000);
+        setting.setThreadNum(3);
         return setting;
     }
 
     public static void main(String[] args) {
         Bee.create(new DoubanMovieDemo())
-                .setHandler(new JsonFileHandler("/Users/wangtonghe/workspace/data/java/javaBee"))
+                .setHandler(new JsonFileHandler("/Users/wangtonghe/workspace/data/java/javaBee","movie.json"))
                 .setHandler(new ConsoleHandler())
                 .run2();
     }

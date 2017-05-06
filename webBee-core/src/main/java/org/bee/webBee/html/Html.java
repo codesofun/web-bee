@@ -8,6 +8,7 @@ import org.bee.webBee.utils.ElementUtil;
 import org.bee.webBee.utils.JsonUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -27,6 +28,8 @@ public class Html implements Selector, HtmlParser {
     private Elements elements;
 
     private Element element;
+
+    private Node node;
 
     private Map<String, List<String>> elementsMap = new HashMap<String, List<String>>();
 
@@ -61,6 +64,12 @@ public class Html implements Selector, HtmlParser {
         this.elementsMap = elementsMap;
     }
 
+    public Html(String document, Elements elements, Element element, Node node) {
+        this.document = document;
+        this.elements = elements;
+        this.element = element;
+        this.node = node;
+    }
 
     public Html getHtml() {
         try {
@@ -178,8 +187,11 @@ public class Html implements Selector, HtmlParser {
 
     @Override
     public String getValue() {
-        if (element == null) {
+        if (element == null&&elements==null) {
             return null;
+        }
+        if(element==null){
+            return elements.size()>0?elements.get(0).text():null;
         }
         return element.text();
     }
@@ -192,6 +204,22 @@ public class Html implements Selector, HtmlParser {
         List<String> list = new ArrayList<>();
         elements.forEach((e) -> list.add(e.text()));
         return list;
+    }
+
+    @Override
+    public String nextNodeText(){
+        if(element==null){
+            return null;
+        }
+        return element.nextSibling().toString();
+    }
+
+    @Override
+    public String prevNodeText(){
+        if(element==null){
+            return null;
+        }
+        return element.previousSibling().toString();
     }
 
 }
