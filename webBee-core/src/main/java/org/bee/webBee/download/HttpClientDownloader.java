@@ -23,15 +23,17 @@ import java.util.logging.Logger;
 public class HttpClientDownloader implements DownLoader {
 
     private Logger logger = Logger.getLogger(String.valueOf(getClass()));
-    private Page page = new Page();
+//    private Page page = new Page();
     @Override
     public Page download(Request request, Task task) {
         Setting setting = task.getSetting();
+
         HttpRequestBase httpMethod =  null;
         httpMethod = HttpClientPool.getInstance().generateHttpMethod(request,task,httpMethod);
 
         HttpClientBuilder httpClientBuilder = HttpClientPool.getInstance().generateClient(setting,httpMethod);
         CloseableHttpClient closeableHttpClient = httpClientBuilder.build();
+        Page page = new Page();
         try {
             CloseableHttpResponse closeableHttpResponse = closeableHttpClient.execute(httpMethod);
             System.out.println(closeableHttpResponse.getStatusLine().getStatusCode());
@@ -51,7 +53,7 @@ public class HttpClientDownloader implements DownLoader {
         return page;
     }
 
-    public Html getHtml(){
-        return page.getHtml();
-    }
+//    public Html getHtml(){
+//        return page.getHtml();
+//    }
 }

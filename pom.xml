@@ -105,6 +105,7 @@
     <modules>
         <module>webBee-core</module>
         <module>webBee-redis</module>
+        <module>webBee-elastic</module>
     </modules>
 
     <build>

@@ -68,13 +68,13 @@ public class DoubanMovieDemo implements PageProcessor {
         setting.setHttpMethod("GET");
         setting.setCookies("bid","PI0P2w4aMDI");
         setting.setThreadSleep(2000);
-        setting.setThreadNum(3);
+        setting.setThreadNum(6);
         return setting;
     }
 
     public static void main(String[] args) {
         Bee.create(new DoubanMovieDemo())
-                .setHandler(new JsonFileHandler("/Users/wangtonghe/workspace/data/java/javaBee","movie.json"))
+                .setHandler(new JsonFileHandler("/Users/wangtonghe/workspace/data/java/javaBee","doubanMovie2.json"))
                 .setHandler(new ConsoleHandler())
                 .run2();
     }
