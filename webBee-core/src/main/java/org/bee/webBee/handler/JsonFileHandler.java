@@ -1,13 +1,11 @@
 package org.bee.webBee.handler;
 
 import com.alibaba.fastjson.JSON;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bee.webBee.BeeConstant;
 import org.bee.webBee.BeeResult;
 import org.bee.webBee.utils.FileUtil;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Map;
 

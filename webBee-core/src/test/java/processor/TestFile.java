@@ -2,7 +2,6 @@ package processor;
 
 import org.bee.webBee.BeeConstant;
 import org.junit.Test;
-import org.relaxng.datatype.DatatypeException;
 
 import java.io.File;
 import java.io.PrintWriter;
