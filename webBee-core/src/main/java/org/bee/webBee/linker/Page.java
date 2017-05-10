@@ -5,6 +5,7 @@ import org.bee.webBee.BeeResult;
 import org.bee.webBee.html.Html;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.bee.webBee.processor.Task;
 import org.bee.webBee.utils.UrlUtils;
 
 import java.io.IOException;
@@ -45,10 +46,10 @@ public class Page {
     private String url;
 
 
-
     private int statusCode;
 
 
+    private Task task;
 
     public void addWaitRequest(List<String> requests){
         //TODO: synchronized  同步锁
@@ -127,5 +128,13 @@ public class Page {
 
     public void setRequest(Request request) {
         this.request = request;
+    }
+
+    public void setTast(Task task) {
+        this.task = task;
+    }
+
+    public Task getTask(){
+        return task;
     }
 }
