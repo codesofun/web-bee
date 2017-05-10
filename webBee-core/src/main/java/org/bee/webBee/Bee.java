@@ -172,7 +172,7 @@ public class Bee implements Runnable, Task {
     /**
      * 获取下一个带抓取请求信息
      *
-     * @return todo paging next不可以写死
+     * @return
      */
     private boolean requestNextProcessor() {
         String url = JsonUtil.jsonCustomKey(html.getJsonApi(), setting.getNextUrlKeyOnResult());
