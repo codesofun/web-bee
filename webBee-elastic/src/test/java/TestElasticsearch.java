@@ -7,8 +7,8 @@ import org.junit.Test;
 
 import java.net.InetAddress;
 import java.util.Date;
-
-import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author wangtonghe
@@ -20,21 +20,32 @@ public class TestElasticsearch {
     public void test() {
 
         try {
-            Settings settings = Settings.builder().put("cluster.name", "elasticsearch_wangtonghe")
+            Settings settings = Settings.builder().put("cluster.name", "elasticsearch")
                     .build();
 
             TransportClient client = new PreBuiltTransportClient(settings)
                     .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300));
-            IndexResponse response = client.prepareIndex("twitter", "tweet", "1")
-                    .setSource(jsonBuilder()
-                            .startObject()
-                            .field("user", "kimchy")
-                            .field("postDate", new Date())
-                            .field("message", "trying out Elasticsearch")
-                            .endObject()
-                    )
-                    .get();
-            System.out.println(response);
+//            IndexResponse response = client.prepareIndex("twitter", "tweet", "1")
+//                    .setSource(jsonBuilder()
+//                            .startObject()
+//                            .field("user", "kimchy")
+//                            .field("postDate", new Date())
+//                            .field("message", "trying out Elasticsearch")
+//                            .endObject()
+//                    )
+//                    .get();
+//            System.out.println(response);
+
+            Map<String,Object> result = new HashMap<>();
+            result.put("user","Mary6");
+            result.put("postDate",new Date());
+            result.put("massage","this is Mary6");
+
+            IndexResponse response2 = client.prepareIndex("twitter","tweet")
+                    .setSource(result).get();
+            System.out.println(response2.status().name().equals("CREATED"));
+
+
 
             client.close();
 

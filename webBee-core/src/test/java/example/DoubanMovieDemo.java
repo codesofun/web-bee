@@ -55,6 +55,9 @@ public class DoubanMovieDemo implements PageProcessor {
         page.setResult("lang",lang);
         page.setResult("country",country);
         page.setResult("category",category_list);
+        if(date!=null&&date.indexOf("(")>0){
+            date = date.substring(0,date.indexOf("("));
+        }
         page.setResult("date",date);
         page.setResult("mark",mark);
 

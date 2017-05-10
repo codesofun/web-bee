@@ -6,6 +6,8 @@ import org.jsoup.nodes.TextNode;
 import org.jsoup.select.Elements;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,9 +38,25 @@ public class TestCss {
 //
         Element before = element.select("span.pl:contains(制片国家/地区)").get(0);
         System.out.println(before.nextSibling());
+    }
 
+    @Test
+    public void test2(){
+        String date = "2016-09-10(中国大陆)";
+        Date  dateTime =null;
+        try {
+            if(date.indexOf("(")>0){
+                date = date.substring(0,date.indexOf("("));
+                System.out.println(date);
+                dateTime = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(date);
+        System.out.println(dateTime);
 
-
+//        System.out.println(date.);
 
 
     }
