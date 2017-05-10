@@ -32,14 +32,15 @@ public class FileDownloader {
             outputStream = new FileOutputStream(xml);
             InputStream inputStream = response.getEntity().getContent();
             byte buff[] = new byte[4096];
-            int counts = 0;
+            int counts;
+//            int count = 0;
+            System.out.println("正在下载 : " + fileName );
             while ((counts = inputStream.read(buff)) != -1) {
-                System.out.println(".......");
                 outputStream.write(buff, 0, counts);
-
             }
             outputStream.flush();
             outputStream.close();
+            System.out.println(fileName + "下载完成!");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
