@@ -166,6 +166,39 @@ public class Html implements Selector, HtmlParser {
         return list;
     }
 
+    @Override
+    public List<String> getImgUrls() {
+        return getUrls("img");
+    }
+
+    @Override
+    public List<String> getVideoUrls() {
+        return getUrls("video");
+    }
+
+
+    private List<String> getUrls(String type) {
+        if(elements==null&&element==null){
+            return new ArrayList<>();
+        }
+        List<String> list = new ArrayList<>();
+
+        if(elements==null){
+            elements = element.select(type);
+            for (Element element : elements) {
+                list.add(element.attr("src"));
+            }
+        }else{
+            elements = elements.select(type);
+            for (Element element : elements) {
+                list.add(element.attr("src"));
+            }
+        }
+
+        return list;
+    }
+
+
     public Map<String, List<String>> getResult() {
         return elementsMap;
     }

@@ -15,6 +15,7 @@ public class ConsoleHandler implements Handler {
        for(Map.Entry<String,Object> entry:beeResult.getResult().entrySet() ){
            System.out.println(entry.getKey()+":\t"+entry.getValue());
        }
+       beeResult.getFileResults().forEach(System.out::println);
 
     }
 

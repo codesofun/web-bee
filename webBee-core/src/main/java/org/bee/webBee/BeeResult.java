@@ -1,7 +1,6 @@
 package org.bee.webBee;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author wangtonghe
@@ -10,6 +9,12 @@ import java.util.Map;
 public class BeeResult {
 
     private Map<String, Object> result = new HashMap<>();
+
+    private Set<String> fileResult = new HashSet<>();
+
+    public void setFileResult(List<String> fileUrls){
+        fileResult.addAll(fileUrls);
+    }
 
     public <T>void put(String key, T value) {
         if (value != null) {
@@ -24,6 +29,11 @@ public class BeeResult {
 
     public Map<String,Object> getResult(){
         return result;
+    }
+
+    public Set<String> getFileResults(){
+        return fileResult;
+
     }
 
     @Override

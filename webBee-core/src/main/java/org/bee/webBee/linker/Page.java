@@ -88,6 +88,10 @@ public class Page {
         return beeResult;
     }
 
+    public void setFileResult(List<String> fileUrls){
+        beeResult.setFileResult(fileUrls);
+    }
+
     public int getStatusCode() {
         return statusCode;
     }

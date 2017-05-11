@@ -54,11 +54,24 @@ public interface Selector {
 
 
     /**
-     * 获取标签
-     *
+     * 获取所有a链接
      * @return
      */
     List<String> getLinks();
+
+    /**
+     * 获取所有图片url
+     * @return
+     */
+    List<String> getImgUrls();
+
+    /**
+     * 获取所有视频url
+     * @return
+     */
+    List<String> getVideoUrls();
+
+
 
     String nextNodeText();
 
