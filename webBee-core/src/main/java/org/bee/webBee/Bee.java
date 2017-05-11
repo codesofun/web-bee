@@ -11,6 +11,7 @@ import org.bee.webBee.linker.Request;
 import org.bee.webBee.processor.PageProcessor;
 import org.bee.webBee.processor.Setting;
 import org.bee.webBee.processor.Task;
+import org.bee.webBee.thread.BeeThreadPool;
 import org.bee.webBee.utils.JsonUtil;
 
 import java.io.IOException;
@@ -36,7 +37,7 @@ public class Bee implements Runnable, Task {
 
     private DownLoader downLoader = new HttpClientDownloader();
 
-    private ExecutorService executorService;
+    private BeeThreadPool beeThreadPool;
 
     private List<Handler> handlers = new ArrayList<>();
 
@@ -86,7 +87,7 @@ public class Bee implements Runnable, Task {
             try {
                 Thread.sleep(setting.getThreadSleep());
                 pageProcessor.process(pageProcessor(request));
-                System.out.println(" ");
+                System.out.println("");
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
@@ -101,12 +102,12 @@ public class Bee implements Runnable, Task {
         while (!Thread.currentThread().isInterrupted() ) {
             Request request = waitRequests.poll();
             if (request == null) {
-                if (((ThreadPoolExecutor) executorService).getActiveCount() == 0) {
+                if (beeThreadPool.getAliveThreadNum()== 0) {
                     break;
                 }
                 continue;
             }
-            executorService.execute(() -> {
+            beeThreadPool.execute(() -> {
                 Page page = pageProcessor(request);
                 if (page.getStatusCode() == BeeConstant.STATUS_CODE_200) {
                     try {
@@ -125,7 +126,7 @@ public class Bee implements Runnable, Task {
     }
 
     private void close(){
-        executorService.shutdown();
+        beeThreadPool.shutdown();
         waitRequests.clear();
         handleResultEnd();
 
@@ -140,6 +141,7 @@ public class Bee implements Runnable, Task {
         if(page.getWaitRequests()!=null&&page.getWaitRequests().size()>0){
             waitRequests.addAll(page.getWaitRequests());  //添加待处理url
         }
+        System.out.println("存活线程数："+beeThreadPool.getAliveThreadNum());
 
     }
 
@@ -148,7 +150,7 @@ public class Bee implements Runnable, Task {
     }
 
     private void initThreadPool() {
-        executorService = Executors.newFixedThreadPool(setting.getThreadNum());
+        beeThreadPool = new BeeThreadPool(setting.getThreadNum());
     }
 
 
