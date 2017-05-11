@@ -17,36 +17,37 @@ public class FileDownloader {
 
     private Request request;
 
-    private Task task ;
+    private Task task;
 
-    public FileDownloader(Request request,Task task){
+    public FileDownloader(Request request, Task task) {
         this.request = request;
         this.task = task;
     }
 
-    public void downFile(String path , String fileName){
-        CloseableHttpResponse response = HttpResponse.getInstance(request,task).getResponse();
-        File xml = new File(path+fileName+".mp4");
-        FileOutputStream outputStream = null;
+    public void downFile(String path, String fileName) {
+        CloseableHttpResponse response = HttpResponse.getInstance(request, task).getResponse();
         try {
-            outputStream = new FileOutputStream(xml);
+            FileOutputStream outputStream = new FileOutputStream(new File(path + fileName + ".mp4"));
             InputStream inputStream = response.getEntity().getContent();
+            Double streamLength = (double) response.getEntity().getContentLength();
+            Double readStreamLength = 0.00;
             byte buff[] = new byte[4096];
             int counts;
-//            int count = 0;
-            System.out.println("正在下载 : " + fileName );
+            System.out.println("正在下载 : " + fileName);
             while ((counts = inputStream.read(buff)) != -1) {
                 outputStream.write(buff, 0, counts);
+                readStreamLength += counts;
+                System.out.print("\r 已经下载%" + Math.floor((readStreamLength / streamLength) * 100) );
             }
+
             outputStream.flush();
             outputStream.close();
-            System.out.println(fileName + "下载完成!");
+            System.out.print(fileName + "下载完成!");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
 
     }
