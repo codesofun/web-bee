@@ -31,7 +31,7 @@ public class TestDownVideo implements PageProcessor {
             String video_url = JSON.parseObject(v.toString()).get("video_url").toString();
             String video_name = JSON.parseObject(v.toString()).get("video_name").toString();
             System.out.println(video_name + " : " + video_url);
-            new FileDownloader(new Request(video_url),page.getTask()).downFile("/Users/pg/Desktop/",video_name);
+            new FileDownloader(new Request(video_url),page.getTask()).downFileProcessor("/Users/pg/Desktop/",video_name);
         }
     }
 

@@ -1,6 +1,7 @@
 package org.bee.webBee.utils;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.client.methods.CloseableHttpResponse;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -26,6 +27,11 @@ public final class FileUtil {
     private static String HTTP_PREFIX = "http:";
 
     /**
+     * 一次读取默认字节
+     */
+    private static  byte step[] = new byte[4096];
+
+    /**
      * 文件下载
      *
      * @param originUrl 文件源路径
@@ -38,7 +44,7 @@ public final class FileUtil {
             return;
         }
         originUrl = doOriginUrl(originUrl);
-        if(StringUtils.isBlank(originUrl)){
+        if (StringUtils.isBlank(originUrl)) {
             return;
         }
 
@@ -145,17 +151,46 @@ public final class FileUtil {
 
     /**
      * 处理源路径
+     *
      * @param originUrl
      * @return
      */
-    private static String doOriginUrl(String originUrl){
-        if(originUrl.startsWith("http")){
+    private static String doOriginUrl(String originUrl) {
+        if (originUrl.startsWith("http")) {
             return originUrl;
-        }else if(originUrl.startsWith("//")){
-            return HTTP_PREFIX+originUrl;
+        } else if (originUrl.startsWith("//")) {
+            return HTTP_PREFIX + originUrl;
         }
         return null;
 
 
     }
+
+    public static void saveFile(CloseableHttpResponse response, String path, String fileName) {
+
+        try {
+            FileOutputStream outputStream = new FileOutputStream(new File(path + fileName + ".mp4"));
+            InputStream inputStream = response.getEntity().getContent();
+            Double streamLength = (double) response.getEntity().getContentLength();
+            Double readStreamLength = 0.00;
+            int counts;
+            while ((counts = inputStream.read(step)) != -1) {
+                outputStream.write(step, 0, counts);
+                readStreamLength += counts;
+                System.out.print("\r " + fileName + "已经下载%" + Math.floor((readStreamLength / streamLength) * 100));
+            }
+
+            outputStream.flush();
+            outputStream.close();
+
+            System.out.println(fileName + "下载完成!");
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

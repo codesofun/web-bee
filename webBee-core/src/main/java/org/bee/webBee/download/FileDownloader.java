@@ -4,6 +4,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.bee.webBee.HttpClient.HttpResponse;
 import org.bee.webBee.linker.Request;
 import org.bee.webBee.processor.Task;
+import org.bee.webBee.utils.FileUtil;
 
 import java.io.*;
 
@@ -24,31 +25,13 @@ public class FileDownloader {
         this.task = task;
     }
 
-    public void downFile(String path, String fileName) {
+    /**
+     * 下载文件
+     * @param path
+     * @param fileName
+     */
+    public void downFileProcessor(String path, String fileName) {
         CloseableHttpResponse response = HttpResponse.getInstance(request, task).getResponse();
-        try {
-            FileOutputStream outputStream = new FileOutputStream(new File(path + fileName + ".mp4"));
-            InputStream inputStream = response.getEntity().getContent();
-            Double streamLength = (double) response.getEntity().getContentLength();
-            Double readStreamLength = 0.00;
-            byte buff[] = new byte[4096];
-            int counts;
-            System.out.println("正在下载 : " + fileName);
-            while ((counts = inputStream.read(buff)) != -1) {
-                outputStream.write(buff, 0, counts);
-                readStreamLength += counts;
-                System.out.print("\r 已经下载%" + Math.floor((readStreamLength / streamLength) * 100) );
-            }
-
-            outputStream.flush();
-            outputStream.close();
-            System.out.print(fileName + "下载完成!");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
+        FileUtil.saveFile(response,path,fileName);
     }
 }
