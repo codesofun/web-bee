@@ -2,7 +2,15 @@ package org.bee.webBee.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.tika.config.TikaConfig;
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.mime.MediaType;
+import org.apache.tika.mime.MimeType;
+import org.apache.tika.mime.MimeTypeException;
+import org.apache.tika.mime.MimeTypes;
+import org.bee.webBee.HttpClient.HttpResponse;
 
+import javax.sound.sampled.AudioInputStream;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -29,7 +37,7 @@ public final class FileUtil {
     /**
      * 一次读取默认字节
      */
-    private static  byte step[] = new byte[4096];
+    private static byte step[] = new byte[4096];
 
     /**
      * 文件下载
@@ -163,13 +171,12 @@ public final class FileUtil {
         }
         return null;
 
-
     }
 
     public static void saveFile(CloseableHttpResponse response, String path, String fileName) {
 
         try {
-            FileOutputStream outputStream = new FileOutputStream(new File(path + fileName + ".mp4"));
+            FileOutputStream outputStream = new FileOutputStream(new File(path + fileName + HttpUtil.getMimeType(response)));
             InputStream inputStream = response.getEntity().getContent();
             Double streamLength = (double) response.getEntity().getContentLength();
             Double readStreamLength = 0.00;
@@ -191,6 +198,8 @@ public final class FileUtil {
             e.printStackTrace();
         }
     }
+
+
 
 
 }
