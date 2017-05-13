@@ -66,4 +66,9 @@ public class JsonFileHandler implements Handler{
         }
 
     }
+
+    @Override
+    public void setDomain(String domain) {
+
+    }
 }

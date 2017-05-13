@@ -47,6 +47,11 @@ public class Bee implements Runnable, Task {
 
     private Queue<Request> waitRequests = new LinkedBlockingQueue<>();
 
+    /**
+     * 爬取网站域名
+     */
+    private String domain;
+
 
     private static Integer COUNT = 0;
 
@@ -61,6 +66,7 @@ public class Bee implements Runnable, Task {
         this.pageProcessor = pageProcessor;
         this.setting = pageProcessor.getSetting(); //获取用户配置
         waitRequests.add(new Request(setting.getUrl()));  //设置开始路径
+        domain = setting.getDomain();
     }
 
     /**
@@ -137,7 +143,10 @@ public class Bee implements Runnable, Task {
         if (handlers == null) {
             handlers.add(new ConsoleHandler());
         }
-        handlers.forEach((e)->e.handle(page.getBeeResults()));
+        handlers.forEach((e)->{
+            e.setDomain(domain);  //设置域名
+            e.handle(page.getBeeResults());
+        });
         if(page.getWaitRequests()!=null&&page.getWaitRequests().size()>0){
             waitRequests.addAll(page.getWaitRequests());  //添加待处理url
         }
@@ -200,6 +209,7 @@ public class Bee implements Runnable, Task {
 
     public Bee setHandler(Handler handler) {
         handlers.add(handler);
+
         return this;
     }
 }

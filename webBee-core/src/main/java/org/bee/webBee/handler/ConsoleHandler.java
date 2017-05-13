@@ -23,4 +23,9 @@ public class ConsoleHandler implements Handler {
     public void destory() {
 
     }
+
+    @Override
+    public void setDomain(String domain) {
+
+    }
 }

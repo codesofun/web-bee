@@ -27,7 +27,7 @@ public class HuabanImgDemo implements PageProcessor {
 
     @Override
     public Setting getSetting() {
-        setting=Setting.create().setStartUrl("http://huaban.com/boards/19230869");
+        setting=Setting.create().setStartUrl("http://huaban.com/favorite/beauty");
         setting.setDomain("http://huaban.com");
         setting.setHttpMethod("GET");
         setting.setThreadSleep(2000);
