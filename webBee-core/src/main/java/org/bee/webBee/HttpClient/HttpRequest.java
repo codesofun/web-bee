@@ -10,7 +10,4 @@ package org.bee.webBee.HttpClient;
  */
 public class HttpRequest {
 
-    public void createRequest(){
-
-    }
 }

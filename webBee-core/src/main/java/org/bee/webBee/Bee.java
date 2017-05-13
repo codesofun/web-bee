@@ -4,7 +4,6 @@ import org.bee.webBee.download.DownLoader;
 import org.bee.webBee.download.HttpClientDownloader;
 import org.bee.webBee.handler.ConsoleHandler;
 import org.bee.webBee.handler.Handler;
-import org.bee.webBee.handler.JsonFileHandler;
 import org.bee.webBee.html.Html;
 import org.bee.webBee.linker.Page;
 import org.bee.webBee.linker.Request;
@@ -106,7 +105,7 @@ public class Bee implements Runnable, Task {
     public void run2() {
         initThreadPool();
         while (!Thread.currentThread().isInterrupted() ) {
-            Request request = waitRequests.poll();
+             Request request = waitRequests.poll();
             if (request == null) {
                 if (beeThreadPool.getAliveThreadNum()== 0) {
                     break;

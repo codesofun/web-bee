@@ -2,17 +2,9 @@ package org.bee.webBee.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.tika.config.TikaConfig;
-import org.apache.tika.metadata.Metadata;
-import org.apache.tika.mime.MediaType;
-import org.apache.tika.mime.MimeType;
-import org.apache.tika.mime.MimeTypeException;
-import org.apache.tika.mime.MimeTypes;
-import org.bee.webBee.HttpClient.HttpResponse;
+import org.bee.webBee.processor.Task;
 
-import javax.sound.sampled.AudioInputStream;
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
@@ -47,6 +39,7 @@ public final class FileUtil {
      * @param destPath  文件下载目录
      */
     private static void download(String originUrl, String destPath) {
+
 
         String fileName = originUrl.substring(originUrl.lastIndexOf("/") + 1);
         if (StringUtils.isBlank(fileName)) {

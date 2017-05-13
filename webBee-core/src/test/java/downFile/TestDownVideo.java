@@ -20,8 +20,6 @@ import java.util.Scanner;
  */
 public class TestDownVideo implements PageProcessor {
 
-    private Setting setting;
-
     @Override
     public void process(Page page) throws IOException {
         String api = page.getApi();
@@ -39,8 +37,8 @@ public class TestDownVideo implements PageProcessor {
     public Setting getSetting() {
         System.out.print("请输入课程id：");
         Scanner scanner = new Scanner(System.in);
-        int courseid = scanner.nextInt();
-        setting = Setting.create().setStartUrl("http://api.maiziedu.com/v2/getCoursePlayInfo/?courseId="+ courseid +"&client=android");
+        int courseId = scanner.nextInt();
+        Setting setting = Setting.create().setStartUrl("http://api.maiziedu.com/v2/getCoursePlayInfo/?courseId=" + courseId + "&client=android");
         setting = setting.setHttpMethod("GET");
         return setting;
     }
