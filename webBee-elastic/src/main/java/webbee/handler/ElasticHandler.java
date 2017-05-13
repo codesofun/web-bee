@@ -53,4 +53,9 @@ public class ElasticHandler implements Handler{
 
 
     }
+
+    @Override
+    public void setDomain(String domain) {
+
+    }
 }
