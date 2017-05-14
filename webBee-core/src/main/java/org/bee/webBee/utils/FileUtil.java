@@ -49,7 +49,7 @@ public final class FileUtil {
             URL destUrl = new URL(originUrl);
             URLConnection urlConnection = destUrl.openConnection();
             InputStream inputStream = urlConnection.getInputStream();
-            OutputStream outputStream= null;
+            OutputStream outputStream = null;
             if (destPath.endsWith("/")) {
                 destPath = destPath.substring(0, destPath.length() - 1);
             }
@@ -57,18 +57,9 @@ public final class FileUtil {
             byte[] buffer = new byte[1024];
             int readNum = 0;
 
-            //处理文件名
-            if (!fileName.contains(".")) {
-                byte[] fileHeadBuffer = new byte[28];
-                int headSize = inputStream.read(fileHeadBuffer);
-                String newFileName = fileName + "." + getFileSuffix(fileHeadBuffer);
-                String destFile = destPath + File.separator + newFileName;
-                outputStream = new FileOutputStream(destFile);
-                outputStream.write(fileHeadBuffer, 0, headSize);
-            }else{
-                String destFile = destPath + File.separator + fileName;
-                outputStream = new FileOutputStream(destFile);
-            }
+            String destFile = destPath + File.separator + fileName;
+            outputStream = new FileOutputStream(destFile);
+
             while ((readNum = inputStream.read(buffer)) != -1) {
                 outputStream.write(buffer, 0, readNum);
             }
@@ -182,55 +173,6 @@ public final class FileUtil {
             e.printStackTrace();
         }
     }
-
-    /**
-     * 根据文件流的开始字节部分获取文件类型
-     * @param headByte
-     * @return
-     */
-    private static String getFileSuffix(byte[] headByte) {
-        //TODO 暂时先存在map中
-        Map<String, String> fileTypeMap = new HashMap<>();
-        fileTypeMap.put("ffd8ff", "jpg");
-        fileTypeMap.put("89504e47", "png");
-        fileTypeMap.put("47494638", "gif");
-        fileTypeMap.put("68746d6c3e", "html");
-        fileTypeMap.put("6d6f6f76", "mov");
-        fileTypeMap.put("57415645", "wav");
-        fileTypeMap.put("00000020667479706d70", "mp4");
-        fileTypeMap.put("49443303000000002176", "mp3");
-
-        String fileHead = FileUtil.bytesToHexString(headByte);
-        if (StringUtils.isBlank(fileHead)) {
-            return null;
-        }
-        StringBuilder fileType = new StringBuilder();
-        fileTypeMap.forEach((key, value) -> {
-            if (fileHead.startsWith(key)) {
-                fileType.append(value);
-            }
-        });
-        return fileType.toString();
-    }
-
-    private static String bytesToHexString(byte[] src) {
-
-        StringBuilder stringBuilder = new StringBuilder();
-        if (src == null || src.length <= 0) {
-            return null;
-        }
-        for (int i = 0; i < src.length; i++) {
-            int v = src[i] & 0xFF;
-            String hv = Integer.toHexString(v);
-            if (hv.length() < 2) {
-                stringBuilder.append(0);
-            }
-            stringBuilder.append(hv);
-        }
-        return stringBuilder.toString();
-    }
-
-
 
 
 }

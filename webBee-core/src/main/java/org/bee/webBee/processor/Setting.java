@@ -1,14 +1,8 @@
 package org.bee.webBee.processor;
 
 
-import org.bee.webBee.handler.Handler;
-import org.bee.webBee.linker.Request;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Queue;
-import java.util.concurrent.BlockingDeque;
-import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * 爬虫的配置类
@@ -37,7 +31,6 @@ public class Setting {
 
     private Integer threadNum;
 
-    private Handler handler;
 
 
 
@@ -219,11 +212,4 @@ public class Setting {
         this.threadNum = threadNum;
     }
 
-    public Handler getHandler() {
-        return handler;
-    }
-
-    public void setHandler(Handler handler) {
-        this.handler = handler;
-    }
 }
