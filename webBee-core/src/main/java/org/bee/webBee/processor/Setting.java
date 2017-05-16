@@ -74,6 +74,10 @@ public class Setting {
         return this;
     }
 
+    public void clearHeader(){
+        headers.clear();
+    }
+
     public Map<String, String> getHeader() {
         return headers;
     }

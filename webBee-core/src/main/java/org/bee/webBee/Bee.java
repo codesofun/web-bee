@@ -8,9 +8,21 @@ import org.bee.webBee.linker.Request;
 import org.bee.webBee.processor.PageProcessor;
 import org.bee.webBee.processor.Setting;
 import org.bee.webBee.processor.Task;
+
 import org.bee.webBee.utils.JsonUtil;
 
 import java.io.IOException;
+
+import org.bee.webBee.thread.BeeThreadPool;
+import org.bee.webBee.utils.StringUtil;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Random;
+import java.util.concurrent.LinkedBlockingQueue;
+
 
 /**
  * webBee框架核心入口
@@ -64,26 +76,80 @@ public class Bee implements Runnable, Task {
     }
 
 
+
     @Override
     public void run() {
-        requestProcessor();
-        while (request != null) {
-            if (COUNT >= 1 && request != null) {
-                if (!requestNextProcessor()) break;
-//                if(!checkResultData()) break;
+
+        initThreadPool();
+        while (!Thread.currentThread().isInterrupted() ) {
+             Request request = waitRequests.poll();
+            if (request == null) {
+                if (beeThreadPool.getAliveThreadNum()== 0) {
+                    break;
+                }
+                continue;
             }
-            COUNT++;
-            System.out.println("this is Bee.class implement Runnable's run function! --request:" + request.toString());
-            try {
-                Thread.sleep(setting.getThreadSleep());
-                pageProcessor.process(pageProcessor(request));
-                System.out.println("");
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            beeThreadPool.execute(() -> {
+                Page page = pageProcessor(request);
+                if (page.getStatusCode() == BeeConstant.STATUS_CODE_200) {
+                    try {
+                        pageProcessor.process(page);  //处理页面
+                        handleResult(page);    //处理结果
+                        Thread.sleep(setting.getThreadSleep());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }else if(page.getStatusCode()==BeeConstant.STATUS_CODE_403){
+                    System.err.println(setting.getDomain()+"被封了！！！");
+                    resetHeader();
+                }
+            });
         }
+        close();
+    }
+
+    private void close(){
+        beeThreadPool.shutdown();
+        waitRequests.clear();
+        handleResultEnd();
+
+    }
+
+    private void clearHeader(){
+        setting.clearHeader();
+    }
+
+    private void resetHeader(){
+        clearHeader();
+        String userAgent = BeeConstant.userAgentList.get(new Random().nextInt( BeeConstant.userAgentList.size()));
+        setting.addHeader("userAgent",userAgent);
+        setting.setCookies("bid", StringUtil.getRandomStr(11));
+
+    }
+
+    private void handleResult(Page page) {
+        //默认使用Console处理结果，即打印到控制台
+        if (handlers == null) {
+            handlers.add(new ConsoleHandler());
+        }
+        handlers.forEach((e)->{
+            e.setDomain(domain);  //设置域名
+            e.handle(page.getBeeResults());
+        });
+        if(page.getWaitRequests()!=null&&page.getWaitRequests().size()>0){
+            waitRequests.addAll(page.getWaitRequests());  //添加待处理url
+        }
+
+    }
+
+    private void handleResultEnd(){
+        handlers.forEach(Handler::destory);
+    }
+
+    private void initThreadPool() {
+        beeThreadPool = new BeeThreadPool(setting.getThreadNum());
 
     }
 
@@ -92,32 +158,6 @@ public class Bee implements Runnable, Task {
 
 
         return downLoader.download(request, this); //annotation: this 'this' to substitute one expression with Task's implement
-    }
-
-    /**
-     * 获取带抓取请求信息
-     *
-     * @return
-     */
-    public void requestProcessor() {
-        if (setting.getNextUrlKeyOnResult() != null || COUNT < 1) this.request = new Request(setting.getUrl());
-
-
-    }
-
-    /**
-     * 获取下一个带抓取请求信息
-     *
-     * @return
-     */
-    private boolean requestNextProcessor() {
-        String url = JsonUtil.jsonCustomKey(html.getJsonApi(), setting.getNextUrlKeyOnResult());
-        if (url != null) {
-            this.request = new Request(url);
-            return true;
-        }
-        return false;
-//        System.out.println("nextUrl--->"+ JsonUtil.jsonCustomKey(html.getJsonApi(),setting.getNextUrlKeyOnResult()));
     }
 
 
