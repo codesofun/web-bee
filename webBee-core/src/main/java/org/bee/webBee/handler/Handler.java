@@ -19,6 +19,7 @@ public interface Handler {
      */
     void destory();
 
+
     /**
      * 设置网站域名
      * @param domain

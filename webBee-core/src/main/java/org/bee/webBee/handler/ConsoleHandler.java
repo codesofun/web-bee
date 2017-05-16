@@ -17,6 +17,7 @@ public class ConsoleHandler implements Handler {
        }
        beeResult.getFileResults().forEach(System.out::println);
 
+
     }
 
     @Override

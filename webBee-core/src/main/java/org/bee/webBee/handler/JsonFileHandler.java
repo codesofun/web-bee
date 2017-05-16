@@ -21,6 +21,7 @@ public class JsonFileHandler implements Handler{
 
     private String name;
 
+
     public JsonFileHandler() {
        setPath(getClass().getResource("/").getFile()+ BeeConstant.DOWNLOAD_BASE_PATH,null);
     }
