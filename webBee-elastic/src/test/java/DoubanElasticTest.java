@@ -92,6 +92,6 @@ public class DoubanElasticTest implements PageProcessor{
         Bee.create(new DoubanElasticTest())
                 .setHandler(new ElasticHandler("bee3","movie"))
                 .setHandler(new ConsoleHandler())
-                .run2();
+                .run();
     }
 }

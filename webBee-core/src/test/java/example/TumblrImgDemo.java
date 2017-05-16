@@ -42,6 +42,6 @@ public class TumblrImgDemo implements PageProcessor {
         Bee.create(new TumblrImgDemo())
                 .setHandler(new FileDownloadHandler("/Users/wangtonghe/workspace/data/java/javaBee"))
                 .setHandler(new ConsoleHandler())
-                .run2();
+                .run();
     }
 }

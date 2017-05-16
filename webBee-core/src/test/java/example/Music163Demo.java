@@ -68,7 +68,7 @@ public class Music163Demo implements PageProcessor {
 
         Bee.create(new Music163Demo())
                 .setHandler(new ConsoleHandler())
-                .run2();
+                .run();
 
     }
 }

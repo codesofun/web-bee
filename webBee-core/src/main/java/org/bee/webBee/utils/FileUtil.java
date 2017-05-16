@@ -48,6 +48,8 @@ public final class FileUtil {
         try {
             URL destUrl = new URL(originUrl);
             URLConnection urlConnection = destUrl.openConnection();
+            urlConnection.setRequestProperty("User-agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36");
+            urlConnection.setRequestProperty("Cookie","__jsluid=4aba900eae2481a58f890b7e766df71d");
             InputStream inputStream = urlConnection.getInputStream();
             OutputStream outputStream= null;
             if (destPath.endsWith("/")) {
@@ -89,9 +91,12 @@ public final class FileUtil {
      */
     public static void batchDownloadFile(Set<String> fileUrls, String path, int threadNum) {
         File destDir = new File(path);
-        if (!destDir.isDirectory() || !destDir.exists()) {
-            System.err.println("下载目录不存在");
+        if (!destDir.isDirectory() ) {
+            System.err.println("下载目录错误");
             return;
+        }
+        if(!destDir.exists()){
+            destDir.mkdirs();
         }
         threadNum = threadNum > 0 ? threadNum : DEFAULT_DOWNLOAD_THREAD_NUM;
         ExecutorService executorService = Executors.newFixedThreadPool(threadNum);

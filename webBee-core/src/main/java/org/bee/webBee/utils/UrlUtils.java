@@ -18,10 +18,10 @@ public class UrlUtils {
             return url;
         }
         if(url.startsWith("/")){
-            int index = refer.indexOf("//");
-            String sub = refer.substring(index + 2);
-            String res = refer.substring(0, index + 2)+sub.substring(0, sub.indexOf("/"));
-            return res+url;
+            int pos = refer.lastIndexOf("/");
+            if(pos>refer.indexOf("//")+1){
+                refer = refer.substring(0,pos);
+            }
         }
         return refer+url;
 

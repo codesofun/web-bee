@@ -1,22 +1,12 @@
 package org.bee.webBee.download;
 
-import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.util.EntityUtils;
-import org.bee.webBee.HttpClient.HttpClientPool;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.bee.webBee.HttpClient.HttpResponse;
-import org.bee.webBee.html.Html;
 import org.bee.webBee.linker.Page;
 import org.bee.webBee.linker.Request;
-import org.bee.webBee.processor.Setting;
 import org.bee.webBee.processor.Task;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.logging.Logger;
 
 /**

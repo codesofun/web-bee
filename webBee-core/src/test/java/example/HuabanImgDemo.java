@@ -20,14 +20,18 @@ public class HuabanImgDemo implements PageProcessor {
 
     @Override
     public void process(Page page) throws IOException {
-        List<String> imgUrls= page.getHtml().$("#waterfall > div a").getImgUrls();
-        page.setFileResult(imgUrls);
+        List<String> photoUrl = page.getHtml().$("#waterfall > div").getLinks();
+        page.addWaitRequest(photoUrl);
+        List<String> imageUrl = page.getHtml().$(".pin-view-wrapper .main-image a").getImgUrls();
+        page.setFileResult(imageUrl);
+
+
 
     }
 
     @Override
     public Setting getSetting() {
-        setting=Setting.create().setStartUrl("http://huaban.com/favorite/beauty");
+        setting = Setting.create().setStartUrl("http://huaban.com/boards/17375733/?md=newbn&beauty");
         setting.setDomain("http://huaban.com");
         setting.setHttpMethod("GET");
         setting.setThreadSleep(2000);
@@ -37,8 +41,8 @@ public class HuabanImgDemo implements PageProcessor {
 
     public static void main(String[] args) {
         Bee.create(new HuabanImgDemo())
-                .setHandler(new FileDownloadHandler("/Users/wangtonghe/workspace/data/java/javaBee"))
+                .setHandler(new FileDownloadHandler("/Users/wangtonghe/workspace/data/java/javaBee/huaban2"))
                 .setHandler(new ConsoleHandler())
-                .run2();
+                .run();
     }
 }
