@@ -15,6 +15,7 @@ public class ElasticHandler implements Handler{
 
     private String index;
 
+
     private String type;
 
     private ESHelper esHelper;
