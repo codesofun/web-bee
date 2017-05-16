@@ -2,17 +2,14 @@ package org.bee.webBee;
 
 import org.bee.webBee.download.DownLoader;
 import org.bee.webBee.download.HttpClientDownloader;
+import org.bee.webBee.handler.ConsoleHandler;
+import org.bee.webBee.handler.Handler;
 import org.bee.webBee.html.Html;
 import org.bee.webBee.linker.Page;
 import org.bee.webBee.linker.Request;
 import org.bee.webBee.processor.PageProcessor;
 import org.bee.webBee.processor.Setting;
 import org.bee.webBee.processor.Task;
-
-import org.bee.webBee.utils.JsonUtil;
-
-import java.io.IOException;
-
 import org.bee.webBee.thread.BeeThreadPool;
 import org.bee.webBee.utils.StringUtil;
 
@@ -22,7 +19,6 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
-
 
 /**
  * webBee框架核心入口
@@ -38,12 +34,15 @@ public class Bee implements Runnable, Task {
 
     private DownLoader downLoader = new HttpClientDownloader();
 
+    private BeeThreadPool beeThreadPool;
 
+    private List<Handler> handlers = new ArrayList<>();
 
     private Request request;
 
     private Setting setting;
 
+    private Queue<Request> waitRequests = new LinkedBlockingQueue<>();
 
     /**
      * 爬取网站域名
@@ -63,6 +62,8 @@ public class Bee implements Runnable, Task {
     public Bee(PageProcessor pageProcessor) {
         this.pageProcessor = pageProcessor;
         this.setting = pageProcessor.getSetting(); //获取用户配置
+        waitRequests.add(new Request(setting.getUrl()));  //设置开始路径
+        domain = setting.getDomain();
     }
 
     /**
@@ -79,10 +80,9 @@ public class Bee implements Runnable, Task {
 
     @Override
     public void run() {
-
         initThreadPool();
         while (!Thread.currentThread().isInterrupted() ) {
-             Request request = waitRequests.poll();
+            Request request = waitRequests.poll();
             if (request == null) {
                 if (beeThreadPool.getAliveThreadNum()== 0) {
                     break;
@@ -150,7 +150,6 @@ public class Bee implements Runnable, Task {
 
     private void initThreadPool() {
         beeThreadPool = new BeeThreadPool(setting.getThreadNum());
-
     }
 
 
@@ -172,4 +171,9 @@ public class Bee implements Runnable, Task {
     }
 
 
+    public Bee setHandler(Handler handler) {
+        handlers.add(handler);
+
+        return this;
+    }
 }
