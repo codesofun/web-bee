@@ -12,7 +12,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author wangtonghe
  * @date 2017/5/11 08:17
  */
-public class BeeThreadPool {
+public class BeeExecutorPool {
 
 
     /**
@@ -25,12 +25,12 @@ public class BeeThreadPool {
 
     private ExecutorService executorService;
 
-    public BeeThreadPool(int threadNum) {
+    public BeeExecutorPool(int threadNum) {
         this.threadNum = threadNum;
         this.executorService = Executors.newFixedThreadPool(threadNum);
     }
 
-    public BeeThreadPool(ExecutorService executorService) {
+    public BeeExecutorPool(ExecutorService executorService) {
         this.executorService = executorService;
     }
 

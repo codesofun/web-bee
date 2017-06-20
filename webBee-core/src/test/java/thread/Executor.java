@@ -17,7 +17,6 @@ public class Executor {
             //创建一个单线程化的Executor。
 //          ExecutorService executorService = Executors.newSingleThreadExecutor();
             for (int i = 0; i < 5; i++){
-
                 executorService.execute(new TestRunnable());
                 System.out.println("************* a" + i + " *************");
             }
