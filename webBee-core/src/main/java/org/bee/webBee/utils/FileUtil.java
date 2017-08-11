@@ -1,5 +1,8 @@
 package org.bee.webBee.utils;
 
+
+import me.tongfei.progressbar.ProgressBar;
+import me.tongfei.progressbar.ProgressBarStyle;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.bee.webBee.processor.Task;
@@ -148,20 +151,24 @@ public final class FileUtil {
         return sdf.format(new Date()) + ".json";
     }
 
-    public static void saveFile(CloseableHttpResponse response, String path, String fileName) {
+    public static  synchronized void saveFile(CloseableHttpResponse response, String path, String fileName) {
 
         try {
             FileOutputStream outputStream = new FileOutputStream(new File(path + fileName + HttpUtil.getMimeType(response)));
             InputStream inputStream = response.getEntity().getContent();
             Double streamLength = (double) response.getEntity().getContentLength();
-            Double readStreamLength = 0.00;
+            Long readStreamLength = 1L;
             int counts;
+            ProgressBar pb = new ProgressBar(fileName,Math.round(streamLength), ProgressBarStyle.ASCII).start(); // name, initial max    ProgressBarStyle.ASCII
+
             while ((counts = inputStream.read(step)) != -1) {
                 outputStream.write(step, 0, counts);
                 readStreamLength += counts;
-                System.out.print("\r " + fileName + "已经下载%" + Math.floor((readStreamLength / streamLength) * 100));
+                pb.stepBy(counts);
+                pb.setExtraMessage("下载中...");
+//                System.out.print("\r " + fileName + "已经下载%" + Math.floor((readStreamLength / streamLength) * 100));
             }
-
+            pb.stop(); // stops the progress bar
             outputStream.flush();
             outputStream.close();
 
