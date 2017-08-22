@@ -51,15 +51,9 @@ public class Page {
 
     private Task task;
 
-    public void addWaitRequest(List<String> requests){
+    public void addWaitUrl(String url){
         //TODO: synchronized  同步锁
-        for (String s : requests) {
-            if (StringUtils.isBlank(s) || s.equals("#") || s.startsWith("javascript:")) {
-                break;
-            }
-            s = UrlUtils.canonicalizeUrl(s, getUrl());
-            waitRequests.add(new Request(s));
-        }
+        waitRequests.add(new Request(url));
     }
 
     public void setHtml(CloseableHttpResponse closeableHttpClient) throws IOException {

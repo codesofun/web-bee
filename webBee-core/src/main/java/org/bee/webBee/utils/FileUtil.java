@@ -1,27 +1,26 @@
 package org.bee.webBee.utils;
 
+/**
+ * data 2017-05-11   01:35
+ * E-mail   sis.nonacosa@gmail.com
+ *
+ * @author sis.nonacosa
+ */
 
 import me.tongfei.progressbar.ProgressBar;
 import me.tongfei.progressbar.ProgressBarStyle;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.bee.webBee.processor.Task;
-
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * @author wangtonghe
- * @date 2017/5/5 09:35
- */
+
 public final class FileUtil {
 
     /**
@@ -159,6 +158,7 @@ public final class FileUtil {
             Double streamLength = (double) response.getEntity().getContentLength();
             Long readStreamLength = 1L;
             int counts;
+            //use ProgressBar plug-in  : https://github.com/ctongfei/progressbar
             ProgressBar pb = new ProgressBar(fileName,Math.round(streamLength), ProgressBarStyle.ASCII).start(); // name, initial max    ProgressBarStyle.ASCII
 
             while ((counts = inputStream.read(step)) != -1) {

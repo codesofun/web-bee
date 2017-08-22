@@ -19,6 +19,9 @@ public class FileDownloader {
 
     private Task task;
 
+    /*
+    通过构造器全局request有问题:多线程问题
+     */
     public FileDownloader(Request request, Task task) {
         this.request = request;
         this.task = task;
@@ -29,7 +32,7 @@ public class FileDownloader {
      * @param path
      * @param fileName
      */
-    public void downFileProcessor(String path, String fileName) {
+    public  void downFileProcessor(String path, String fileName) {
         CloseableHttpResponse response = HttpResponse.getInstance(request, task).getResponse();
         FileUtil.saveFile(response,path,fileName);
     }

@@ -1,6 +1,7 @@
 package org.bee.webBee;
 
 import org.bee.webBee.download.DownLoader;
+import org.bee.webBee.download.FileDownloader;
 import org.bee.webBee.download.HttpClientDownloader;
 import org.bee.webBee.html.Html;
 import org.bee.webBee.linker.Page;
@@ -8,9 +9,17 @@ import org.bee.webBee.linker.Request;
 import org.bee.webBee.processor.PageProcessor;
 import org.bee.webBee.processor.Setting;
 import org.bee.webBee.processor.Task;
+import org.bee.webBee.thread.BeeExecutor;
+import org.bee.webBee.thread.BeeExecutorPool;
 import org.bee.webBee.utils.JsonUtil;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * webBee框架核心入口
@@ -22,11 +31,10 @@ import java.io.IOException;
  */
 public class Bee implements Runnable, Task {
 
+
     private PageProcessor pageProcessor;
 
     private DownLoader downLoader = new HttpClientDownloader();
-
-
 
     private Request request;
 
@@ -42,6 +50,16 @@ public class Bee implements Runnable, Task {
     private static Integer COUNT = 0;
 
     private Html html;
+
+    /**
+     * 默认线程数
+     */
+    private static Integer threadNum = 3;
+
+    /**
+     * 表示任务等待完成的 Future //todo 可能会放入page中
+     */
+    List<Future<String>> resultList = new ArrayList<Future<String>>();
 
     /**
      * 实例化处理规则
@@ -66,28 +84,52 @@ public class Bee implements Runnable, Task {
 
     @Override
     public void run() {
+        BeeExecutorPool beeThreadPool = new BeeExecutorPool(threadNum);
         requestProcessor();
         while (request != null) {
-            if (COUNT >= 1 && request != null) {
-                if (!requestNextProcessor()) break;
-//                if(!checkResultData()) break;
-            }
+//            if (COUNT >= 1 && request != null) {
+//                if (!requestNextProcessor()) break;
+////                if(!checkResultData()) break;
+//            }
             COUNT++;
             System.out.println("this is Bee.class implement Runnable's run function! --request:" + request.toString());
-            try {
-                Thread.sleep(setting.getThreadSleep());
-                pageProcessor.process(pageProcessor(request));
-                System.out.println("");
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            beeThreadPool.execute(() -> {
+                Page page = pageProcessor(request);
+                if (page.getStatusCode() == BeeConstant.STATUS_CODE_200) {
+                    try {
+                        Thread.sleep(setting.getThreadSleep());
+                        pageProcessor.process(page);
+                        System.out.println(Thread.currentThread().getName() + "线程被调用了。");
+                        if(page.getWaitRequests().size()>0){
+                            page.getWaitRequests().iterator().forEachRemaining(request -> {
+                                        beeThreadPool.execute(() -> {
+                                            System.out.println("page.getWaitRequests()"+Thread.currentThread().getName() + "线程被调用了。");
+                                            new FileDownloader(request, page.getTask()).downFileProcessor("/Users/zhuang/Desktop/",  String.valueOf((Math.random())) );
+                                        });
+//                                beeThreadPool.shutdown();
+                            });
+                        }
+//                            handleResult(page);    //处理结果
+//                            Thread.sleep(setting.getThreadSleep());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+//                    else if(page.getStatusCode()==BeeConstant.STATUS_CODE_403){
+//                        System.err.println(setting.getDomain()+"被封了！！！");
+//                        resetHeader();
+//                    }
+//            });
+//                Thread.sleep(setting.getThreadSleep());
+//                pageProcessor.process(pageProcessor(request));
+//                System.out.println("");
         }
 
     }
 
-
+    //todo 命名重读 讨论是否更改
     public Page pageProcessor(Request request) {
 
 
@@ -110,6 +152,7 @@ public class Bee implements Runnable, Task {
      * @return
      */
     private boolean requestNextProcessor() {
+        if(html == null) return false;
         String url = JsonUtil.jsonCustomKey(html.getJsonApi(), setting.getNextUrlKeyOnResult());
         if (url != null) {
             this.request = new Request(url);

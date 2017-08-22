@@ -17,7 +17,12 @@ public class Executor {
             //创建一个单线程化的Executor。
 //          ExecutorService executorService = Executors.newSingleThreadExecutor();
             for (int i = 0; i < 5; i++){
-                executorService.execute(new TestRunnable());
+                executorService.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println(Thread.currentThread().getName() + "线程被调用了。");
+                    }
+                });
                 System.out.println("************* a" + i + " *************");
             }
             executorService.shutdown();
