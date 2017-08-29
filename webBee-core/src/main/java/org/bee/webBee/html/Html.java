@@ -13,7 +13,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.regex.Pattern;
+
 
 /**
  * data 2017-03-26   01:07
@@ -26,6 +26,8 @@ public class Html implements Selector, HtmlParser {
     private String document;
 
     private Elements elements;
+
+    private Elements allElements;
 
     private Element element;
 
@@ -42,31 +44,33 @@ public class Html implements Selector, HtmlParser {
 
     public Html(String document) {
         this.document = document;
-        this.elements = Jsoup.parse(this.document).getAllElements();
+        this.allElements = Jsoup.parse(this.document).getAllElements();
     }
 
     public Html(CloseableHttpResponse closeableHttpClient) {
         this.closeableHttpClient = closeableHttpClient;
     }
 
-    public Html(String document, Elements elements) {
+    public Html(String document, Elements elements , Elements allElements,  Map<String, List<String>> elementsMap) {
         this.document = document;
         this.elements = elements;
+        this.allElements = allElements;
+        this.elementsMap = elementsMap;
     }
     private Html(String document,Element element){
         this.document = document;
         this.element = element;
     }
 
-    public Html(String document, Elements elements, Map<String, List<String>> elementsMap) {
+    public Html(String document, Elements allElements, Map<String, List<String>> elementsMap) {
         this.document = document;
-        this.elements = elements;
+        this.allElements = allElements;
         this.elementsMap = elementsMap;
     }
 
-    public Html(String document, Elements elements, Element element, Node node) {
+    public Html(String document, Elements allElements, Element element, Node node) {
         this.document = document;
-        this.elements = elements;
+        this.allElements = allElements;
         this.element = element;
         this.node = node;
     }
@@ -100,10 +104,10 @@ public class Html implements Selector, HtmlParser {
     @Override
     public Html $(String selector) {
         if(this.document!=null){
-            if(elements!=null) {
-                return new Html(this.document, this.elements.select(selector));
+            if(allElements!=null) {
+                return new Html(this.document, this.allElements.select(selector) ,this.allElements,this.elementsMap);
             }else if(element!=null){
-                return new Html(this.document,element.select(selector));
+                return new Html(this.document,element.select(selector),this.allElements,this.elementsMap);
             }else{
                 return new Html();
             }
@@ -121,23 +125,27 @@ public class Html implements Selector, HtmlParser {
 
     @Override
     public Selector get(int index) {
-        if(elements!=null&&elements.size()>=index+1){
-            return new Html(document,elements.get(index));
+        if(allElements!=null&&allElements.size()>=index+1){
+            return new Html(document,allElements.get(index));
         }
         return new Html();
 
     }
 
-
+    /**
+     * 将jsoup解析的json作为value并自定义key
+     * @param key
+     * @return
+     */
     public Html as(String key) {
         this.elementsMap.put(key, ElementUtil.elementsToList(this.elements));
-        return new Html(this.document, this.elements, this.elementsMap);
+        return new Html(this.document, this.allElements, this.elementsMap);
     }
 
     public List<String> getLinks(String selector) {
-        this.elements = Jsoup.parse(document).select(selector).select("a");
+        this.allElements = Jsoup.parse(document).select(selector).select("a");
         List<String> list = new ArrayList<String>();
-        for (Element element : elements) {
+        for (Element element : allElements) {
             list.add(element.attr("href"));
         }
         return list;
@@ -146,14 +154,14 @@ public class Html implements Selector, HtmlParser {
     @Override
     public List<String> getLinks() {
 
-        if(elements==null&&element==null){
+        if(allElements==null&&element==null){
             return new ArrayList<>();
         }
         List<String> list = new ArrayList<>();
 
-        if(elements==null){
-            elements = element.select("a");
-            for (Element element : elements) {
+        if(allElements==null){
+            allElements = element.select("a");
+            for (Element element : allElements) {
                 list.add(element.attr("href"));
             }
         }else{
@@ -178,19 +186,19 @@ public class Html implements Selector, HtmlParser {
 
 
     private List<String> getUrls(String type) {
-        if(elements==null&&element==null){
+        if(allElements==null&&element==null){
             return new ArrayList<>();
         }
         List<String> list = new ArrayList<>();
 
-        if(elements==null){
-            elements = element.select(type);
-            for (Element element : elements) {
+        if(allElements==null){
+            allElements = element.select(type);
+            for (Element element : allElements) {
                 list.add(element.attr("src"));
             }
         }else{
-            elements = elements.select(type);
-            for (Element element : elements) {
+            allElements = allElements.select(type);
+            for (Element element : allElements) {
                 list.add(element.attr("src"));
             }
         }
@@ -220,22 +228,22 @@ public class Html implements Selector, HtmlParser {
 
     @Override
     public String getValue() {
-        if (element == null&&elements==null) {
+        if (element == null&&allElements==null) {
             return null;
         }
         if(element==null){
-            return elements.size()>0?elements.get(0).text():null;
+            return allElements.size()>0?allElements.get(0).text():null;
         }
         return element.text();
     }
 
     @Override
     public List<String> getAll() {
-        if (elements == null) {
+        if (allElements == null) {
             return null;
         }
         List<String> list = new ArrayList<>();
-        elements.forEach((e) -> list.add(e.text()));
+        allElements.forEach((e) -> list.add(e.text()));
         return list;
     }
 
