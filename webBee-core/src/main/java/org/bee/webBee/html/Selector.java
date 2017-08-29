@@ -22,6 +22,13 @@ public interface Selector {
     Selector $(String selector);
 
     /**
+     * 将jsoup解析的json作为value并自定义key
+     * @param selector
+     * @return
+     */
+    Selector as(String selector);
+
+    /**
      * 正则选择器
      *
      * @param regex

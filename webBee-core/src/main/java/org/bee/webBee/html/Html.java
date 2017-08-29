@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.bee.webBee.utils.ElementUtil;
-import org.bee.webBee.utils.JsonUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
@@ -31,9 +30,7 @@ public class Html implements Selector, HtmlParser {
 
     private Element element;
 
-    private Node node;
-
-    private Map<String, List<String>> elementsMap = new HashMap<String, List<String>>();
+    private Map<String, List<String>> elementsMap = new HashMap();
 
     private CloseableHttpResponse closeableHttpClient;
 
@@ -68,12 +65,7 @@ public class Html implements Selector, HtmlParser {
         this.elementsMap = elementsMap;
     }
 
-    public Html(String document, Elements allElements, Element element, Node node) {
-        this.document = document;
-        this.allElements = allElements;
-        this.element = element;
-        this.node = node;
-    }
+
 
     public Html getHtml() {
         try {
@@ -96,7 +88,7 @@ public class Html implements Selector, HtmlParser {
             json = (JSONObject) JSON.parse(document);
         } catch (Exception e) {
             System.out.println("Json 转换格式错误!");
-//            System.out.println("异常栈:"+e);
+            System.out.println("异常栈:"+e);
         }
         return json;
     }

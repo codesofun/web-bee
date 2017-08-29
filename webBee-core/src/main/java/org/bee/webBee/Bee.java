@@ -86,11 +86,11 @@ public class Bee implements Runnable, Task {
     public void run() {
         BeeExecutorPool beeThreadPool = new BeeExecutorPool(threadNum);
         requestProcessor();
-        while (request != null) {
-//            if (COUNT >= 1 && request != null) {
-//                if (!requestNextProcessor()) break;
+        while (request != null ) {
+            if (COUNT >= 1 ) {
+                if (!requestNextProcessor()) break;
 ////                if(!checkResultData()) break;
-//            }
+            }
             COUNT++;
             System.out.println("this is Bee.class implement Runnable's run function! --request:" + request.toString());
 //            beeThreadPool.execute(() -> {
