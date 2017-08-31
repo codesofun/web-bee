@@ -143,7 +143,6 @@ public class Bee implements Runnable, Task {
      */
     public void requestProcessor() {
         if (setting.getNextUrlKeyOnResult() != null || COUNT < 1) this.request = new Request(setting.getUrl());
-
     }
 
     /**

@@ -14,4 +14,9 @@ import java.lang.annotation.Target;
 @Target({ElementType.TYPE})
 public @interface TargetUrl {
 
+    /**
+     * 目标URL地址
+     * @return
+     */
+    String[] value();
 }
