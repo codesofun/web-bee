@@ -6,5 +6,6 @@ package annotation;
  *
  * @author sis.nonacosa
  */
+
 public class findTest {
 }
