@@ -1,7 +1,6 @@
 package org.bee.webBee.annotation;
 
 import org.bee.webBee.linker.Page;
-
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
  * E-mail   sis.nonacosa@gmail.com
  * @author sis.nonacosa
  */
-public class PageAnnotationResolver {
+public class PageAnnotationResolver  {
 
     private Page page ;
     private List<String> targetUrls = new ArrayList<String>();
@@ -45,4 +44,6 @@ public class PageAnnotationResolver {
     public List<String> getTargetUrls(){
         return targetUrls;
     }
+
+
 }
