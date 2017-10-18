@@ -20,7 +20,7 @@ public class PageAnnotationProcess implements PageProcessor
 
     @Override
     public void process(Page page) throws IOException {
-        
+
     }
 
     @Override

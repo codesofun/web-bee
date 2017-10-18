@@ -43,6 +43,8 @@ public class Setting {
 
     private Map<String, String> headers = new LinkedHashMap<String, String>();//todo Collections.synchronizedMap?
 
+    private boolean infinite = false;
+
     /**
      * 个性化配置类入口返回配置对象,省去了new Setting()的步骤
      *
@@ -50,6 +52,17 @@ public class Setting {
      */
     public static Setting create() {
         return new Setting();
+    }
+
+
+    /**
+     * 设置是否暴利无限下载
+     *
+     * @return
+     */
+    public  Setting setInfinite(boolean infinite) {
+        this.infinite = infinite;
+        return this;
     }
 
     /**
@@ -137,6 +150,15 @@ public class Setting {
      */
     public String getUserName() {
         return userName;
+    }
+
+    /**
+     * 获取已经设置的账户
+     *
+     * @return
+     */
+    public boolean getInfinite() {
+        return infinite;
     }
 
     /**

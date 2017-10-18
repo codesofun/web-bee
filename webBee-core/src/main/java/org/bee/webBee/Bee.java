@@ -86,8 +86,8 @@ public class Bee implements Runnable, Task {
     public void run() {
         BeeExecutorPool beeThreadPool = new BeeExecutorPool(threadNum);
         requestProcessor();
-        while (request != null ) {
-            if (COUNT >= 1 ) {
+        while (request != null || setting.getInfinite()) {
+            if (COUNT >= 1 || setting.getInfinite()) {
                 if (!requestNextProcessor()) break;
 ////                if(!checkResultData()) break;
             }
