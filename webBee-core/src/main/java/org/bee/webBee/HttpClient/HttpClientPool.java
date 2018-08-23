@@ -71,7 +71,7 @@ public class HttpClientPool {
     }
 
     public HttpRequestBase generateHttpMethod(Request request,Task task , HttpRequestBase httpRequestBase ){
-        if(task.getSetting().getHttpMethod().equals("GET")) {
+        if( task.getSetting().getHttpMethod() == null || task.getSetting().getHttpMethod().equals("GET") ) {
             httpRequestBase = new HttpGet(request.getUrl());
             this.setHttpConfig(httpRequestBase);
             return  httpRequestBase;
