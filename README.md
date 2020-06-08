@@ -1,5 +1,7 @@
 
 
+# 停止维护
+
 <p align="center"><a href="https://github.com/java-webbee/webBee" target="_blank"><img width="300"src="https://dn-mhke0kuv.qbox.me/cfc1928e37ff0ac46463.png"></a></p>
  
  <p align="center">
@@ -54,7 +56,7 @@
  
 ### 开源讨论群
 
-- `147255248`
+- `147255248`  已解散
  
 ### 开源协议
 
