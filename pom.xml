@@ -97,7 +97,7 @@
     <repositories>
         <repository>
             <id>osc_thirdparty</id>
-            <url>http://maven.oschina.net/content/repositories/thirdparty/</url>
+            <url>https://maven.oschina.net/content/repositories/thirdparty/</url>
         </repository>
     </repositories>
 
